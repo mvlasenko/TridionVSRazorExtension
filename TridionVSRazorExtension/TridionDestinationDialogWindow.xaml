@@ -1,0 +1,41 @@
+﻿<Window x:Class="SDL.TridionVSRazorExtension.TridionDestinationDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Tridion Destination" Height="210" Width="420" Loaded="Window_Loaded" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="#adb9cd" />
+        </Grid.Background>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+
+            <Label Content="Would you like to create new Tridion item?" Height="28" Margin="8" HorizontalAlignment="Left" Name="lblIntro" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" />
+
+            <Label Content="Layout Title" Height="28" HorizontalAlignment="Right" Name="lblLayoutTitle" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" />
+            <TextBox Height="23" HorizontalAlignment="Left" Name="txtLayoutTitle" VerticalAlignment="Center" Width="300" Grid.Column="1" Grid.Row="1" />
+
+            <Label Content="Template Title" Height="28" HorizontalAlignment="Right" Name="lblTemplateTitle" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" />
+            <TextBox Height="23" HorizontalAlignment="Left" Name="txtTemplateTitle" VerticalAlignment="Center" Width="300" Grid.Column="1" Grid.Row="2" />
+
+            <Label Content="Publication" Height="28" HorizontalAlignment="Right" Name="lblTimeZone" VerticalAlignment="Center" Grid.Column="0" Grid.Row="3" />
+            <ComboBox Height="23" HorizontalAlignment="Left" Name="cbPublication" VerticalAlignment="Center" Width="300" Grid.Column="1" Grid.Row="3" />
+
+            <StackPanel Orientation="Horizontal" Height="30" Margin="12,4,0,0" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2">
+                <Button Content="Ok" Height="23" Name="btnOk" Width="75" Margin="6,0,0,0" Click="btnOk_Click" IsDefault="True" />
+                <Button Content="Cancel" Height="23" Name="btnCancel" Width="75" Margin="10,0,0,0" Click="btnCancel_Click" IsCancel="True" />
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Window>

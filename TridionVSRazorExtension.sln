@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TridionVSRazorExtension", "TridionVSRazorExtension\TridionVSRazorExtension.csproj", "{55F8A44C-086F-4C76-9117-750378E0CD4F}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TridionVSRazorExtensionInstaller", "TridionVSRazorExtensionInstaller\TridionVSRazorExtensionInstaller.vdproj", "{1E49E106-654D-46F5-9AED-2075EA82EE93}"
+	ProjectSection(ProjectDependencies) = postProject
+		{55F8A44C-086F-4C76-9117-750378E0CD4F} = {55F8A44C-086F-4C76-9117-750378E0CD4F}
+		{838885E3-26B4-4F5F-BA5E-F2F3E3ABB710} = {838885E3-26B4-4F5F-BA5E-F2F3E3ABB710}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TridionVSRazorExtensionInstallerActions", "TridionVSRazorExtensionInstallerActions\TridionVSRazorExtensionInstallerActions.csproj", "{838885E3-26B4-4F5F-BA5E-F2F3E3ABB710}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55F8A44C-086F-4C76-9117-750378E0CD4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55F8A44C-086F-4C76-9117-750378E0CD4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55F8A44C-086F-4C76-9117-750378E0CD4F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{55F8A44C-086F-4C76-9117-750378E0CD4F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{55F8A44C-086F-4C76-9117-750378E0CD4F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{55F8A44C-086F-4C76-9117-750378E0CD4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55F8A44C-086F-4C76-9117-750378E0CD4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55F8A44C-086F-4C76-9117-750378E0CD4F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{55F8A44C-086F-4C76-9117-750378E0CD4F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{55F8A44C-086F-4C76-9117-750378E0CD4F}.Release|x86.ActiveCfg = Release|Any CPU
+		{1E49E106-654D-46F5-9AED-2075EA82EE93}.Debug|Any CPU.ActiveCfg = Debug
+		{1E49E106-654D-46F5-9AED-2075EA82EE93}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{1E49E106-654D-46F5-9AED-2075EA82EE93}.Debug|x86.ActiveCfg = Debug
+		{1E49E106-654D-46F5-9AED-2075EA82EE93}.Release|Any CPU.ActiveCfg = Release
+		{1E49E106-654D-46F5-9AED-2075EA82EE93}.Release|Mixed Platforms.ActiveCfg = Release
+		{1E49E106-654D-46F5-9AED-2075EA82EE93}.Release|x86.ActiveCfg = Release
+		{838885E3-26B4-4F5F-BA5E-F2F3E3ABB710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{838885E3-26B4-4F5F-BA5E-F2F3E3ABB710}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{838885E3-26B4-4F5F-BA5E-F2F3E3ABB710}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{838885E3-26B4-4F5F-BA5E-F2F3E3ABB710}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{838885E3-26B4-4F5F-BA5E-F2F3E3ABB710}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{838885E3-26B4-4F5F-BA5E-F2F3E3ABB710}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{838885E3-26B4-4F5F-BA5E-F2F3E3ABB710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{838885E3-26B4-4F5F-BA5E-F2F3E3ABB710}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{838885E3-26B4-4F5F-BA5E-F2F3E3ABB710}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{838885E3-26B4-4F5F-BA5E-F2F3E3ABB710}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

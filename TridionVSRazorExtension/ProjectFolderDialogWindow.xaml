@@ -1,0 +1,83 @@
+﻿<Window x:Class="SDL.TridionVSRazorExtension.ProjectFolderDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Project Folder" Height="674" Width="504" Loaded="Window_Loaded" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="#adb9cd" />
+        </Grid.Background>
+
+        <StackPanel>
+
+            <TreeView Name="treeProjectFolder" Height="300" Margin="2" TreeViewItem.Selected="TreeViewItem_Selected">
+
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding ChildItems}">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox Focusable="False" IsChecked="{Binding Checked}" VerticalAlignment="Center" IsThreeState="{Binding IsFolder}" Checked="TreeViewItem_Checked" Unchecked="TreeViewItem_Checked" Indeterminate="TreeViewItem_Checked" />
+                            <ContentPresenter Content="{Binding Name}" Margin="2,0" />
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+
+                <TreeView.Resources>
+                    <Style TargetType="TreeViewItem">
+                        <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />
+                        <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}" />
+                    </Style>
+                </TreeView.Resources>
+
+            </TreeView>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="86" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Label Content="Role" Height="28" HorizontalAlignment="Right" Name="lblRole" Margin="2" Grid.Row="0" Grid.Column="0" />
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" >
+                    <ComboBox Height="23" HorizontalAlignment="Left" Name="cbRoles" Width="240" Margin="2" SelectionChanged="cbRoles_SelectionChanged" />
+                    <CheckBox Content="Template" Height="16" HorizontalAlignment="Left" Name="chkSyncTemplate" VerticalAlignment="Center" Margin="6" Checked="chkFileProperty_Checked" Unchecked="chkFileProperty_Checked" IsThreeState="False" />
+                </StackPanel>
+
+                <Label Content="Title" Height="28" HorizontalAlignment="Right" Name="lblTitle" Margin="2" Grid.Row="1" Grid.Column="0" />
+                <TextBox Height="23" HorizontalAlignment="Left" Name="txtTitle" Margin="2" Width="388" Grid.Row="1" Grid.Column="1" LostFocus="txtTitle_OnLostFocus" />
+
+                <Label Content="Template Title" Height="28" HorizontalAlignment="Right" Name="lblTemplateTitle" Margin="2" Grid.Row="2" Grid.Column="0" />
+                <TextBox Height="23" HorizontalAlignment="Left" Name="txtTemplateTitle" Margin="2" Width="388" Grid.Row="2" Grid.Column="1" LostFocus="txtTemplateTitle_OnLostFocus" />
+
+            </Grid>
+
+            <Label Content="Tridion Folder" Height="23" HorizontalAlignment="Left" Name="lblTridionFolders" VerticalAlignment="Top" Margin="2" />
+            <ListBox Height="36" HorizontalAlignment="Center" Name="lstTridionFolders" VerticalAlignment="Center" Width="472" Margin="2" />
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="350" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="28" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Label Content="Template Format" Height="28" HorizontalAlignment="Left" Name="lblTemplateFormat" VerticalAlignment="Bottom" Margin="6,0,0,0" Grid.Column="0" Grid.Row="0" />
+                <TextBox Height="104" HorizontalAlignment="Left" Name="txtTemplateFormat" VerticalAlignment="Top" Width="340" Margin="6,0,0,0" Grid.Column="0" Grid.Row="1" LostFocus="txtTemplateFormat_OnLostFocus" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
+
+                <Label Content="Schema Names" Height="28" HorizontalAlignment="Left" Name="lblSchemaNames" VerticalAlignment="Bottom" Margin="6,0,0,0" Grid.Column="1" Grid.Row="0" />
+                <TextBox Height="104" HorizontalAlignment="Left" Name="txtSchemaNames" VerticalAlignment="Top" Width="120" Margin="6,0,0,0" Grid.Column="1" Grid.Row="1" LostFocus="txtSchemaNames_OnLostFocus" />
+
+            </Grid>
+
+            <Button Content="Ok" Height="23" HorizontalAlignment="Left" Margin="12,6,6,6" Name="btnOk" VerticalAlignment="Center" Width="75" Click="btnOk_Click" IsDefault="True" />
+
+        </StackPanel>
+
+    </Grid>
+</Window>
