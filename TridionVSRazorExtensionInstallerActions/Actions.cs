@@ -22,7 +22,7 @@ namespace SDL.TridionVSRazorExtension.Installer
             SetValue("Software\\Microsoft\\VisualStudio\\10.0\\AutomationOptions\\LookInFolders", extensionPath, "");
             SetValue("Software\\Microsoft\\VisualStudio\\11.0\\AutomationOptions\\LookInFolders", extensionPath, "");
             SetValue("Software\\Microsoft\\VisualStudio\\12.0\\AutomationOptions\\LookInFolders", extensionPath, "");
-            SetValue("Software\\Microsoft\\VisualStudio\\13.0\\AutomationOptions\\LookInFolders", extensionPath, "");
+            SetValue("Software\\Microsoft\\VisualStudio\\14.0\\AutomationOptions\\LookInFolders", extensionPath, "");
         }
 
         private void RemoveVSRegistration(object sender, InstallEventArgs e)
@@ -32,7 +32,7 @@ namespace SDL.TridionVSRazorExtension.Installer
             RemoveValue("Software\\Microsoft\\VisualStudio\\10.0\\AutomationOptions\\LookInFolders", extensionPath);
             RemoveValue("Software\\Microsoft\\VisualStudio\\11.0\\AutomationOptions\\LookInFolders", extensionPath);
             RemoveValue("Software\\Microsoft\\VisualStudio\\12.0\\AutomationOptions\\LookInFolders", extensionPath);
-            RemoveValue("Software\\Microsoft\\VisualStudio\\13.0\\AutomationOptions\\LookInFolders", extensionPath);
+            RemoveValue("Software\\Microsoft\\VisualStudio\\14.0\\AutomationOptions\\LookInFolders", extensionPath);
         }
 
         private static void SetValue(string path, string key, string value)

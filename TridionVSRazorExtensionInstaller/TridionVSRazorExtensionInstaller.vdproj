@@ -579,7 +579,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TridionVSRazorExtension, Version=2.6.5777.32698, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TridionVSRazorExtension, Version=2.6.5779.23473, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_CF7263690ADF4E72AFE820D8D048F42B"
@@ -786,15 +786,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SDL Tridion Visual Studio Razor Extension"
-        "ProductCode" = "8:{8FD3F3F6-709C-414D-9E19-F26C3736D611}"
-        "PackageCode" = "8:{10B22A76-2864-4978-955A-C5D24D3745D6}"
+        "ProductCode" = "8:{CB973474-D176-4C29-AB41-709401873C7D}"
+        "PackageCode" = "8:{F200C679-BCEB-4430-A555-E4650AD3AA5A}"
         "UpgradeCode" = "8:{18895F6A-53E2-4A6C-925A-D8C2F4ABE957}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:2.7"
+        "ProductVersion" = "8:2.7.1"
         "Manufacturer" = "8:Mark Vlasenko"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
