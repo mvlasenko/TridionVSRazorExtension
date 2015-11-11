@@ -116,7 +116,7 @@ namespace SDL.TridionVSRazorExtension
             var menuCommand = sender as OleMenuCommand;
             if (menuCommand != null)
             {
-                menuCommand.Visible = false;
+                menuCommand.Visible = true;
                 if (applicationObject.SelectedItems != null)
                 {
                     foreach (SelectedItem item in applicationObject.SelectedItems)
