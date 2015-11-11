@@ -5,6 +5,7 @@ using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Resources;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.ServiceModel;
@@ -16,10 +17,9 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using DiffMatchPatch;
 using EnvDTE;
-using EnvDTE80;
-using SDL.TridionVSRazorExtension.Properties;
 using Tridion.ContentManager.CoreService.Client;
 using System.Text;
+using SDL.TridionVSRazorExtension.Properties;
 
 namespace SDL.TridionVSRazorExtension
 {
@@ -3958,7 +3958,7 @@ namespace SDL.TridionVSRazorExtension
 
         #region Visual Studio
 
-        public static Project GetConfiguredProject(Solution2 solution)
+        public static Project GetConfiguredProject(Solution solution)
         {
             foreach (Project project in solution.Projects)
             {
@@ -3972,7 +3972,7 @@ namespace SDL.TridionVSRazorExtension
             return null;
         }
 
-        public static Project GetCurrentProject(DTE2 application)
+        public static Project GetCurrentProject(DTE application)
         {
             foreach (SelectedItem selectedItem in application.SelectedItems)
             {
@@ -3982,7 +3982,7 @@ namespace SDL.TridionVSRazorExtension
             return null;
         }
 
-        public static Project GetProject(DTE2 application, Solution2 solution)
+        public static Project GetProject(DTE application, Solution solution)
         {
             Project project = GetConfiguredProject(solution);
             if (project != null)
