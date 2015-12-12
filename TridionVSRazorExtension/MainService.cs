@@ -3161,7 +3161,59 @@ namespace SDL.TridionVSRazorExtension
 
             return true;
         }
-        
+
+        #endregion
+
+        #region Debug helpers
+
+        public static void RunFile(string filePath, Project project, Solution solution)
+        {
+            string rootPath = Path.GetDirectoryName(project.FileName);
+
+            RootPath = rootPath;
+            Project = project;
+
+            Configuration configuration = Service.GetConfiguration(rootPath, "TridionRazorMapping.xml");
+
+            MappingInfo mapping = configuration.FirstOrDefault(x => x.Name == (configuration.DefaultConfiguration ?? "Default"));
+            if (mapping == null)
+            {
+                MessageBox.Show("Configuration doesn't contain default mapping. Please edit configuration.", "Configuration Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            List<ProjectFileInfo> files = mapping.GetFiles(filePath);
+            List<ProjectFolderInfo> folders = mapping.GetFolders(filePath);
+
+            if (files == null || files.Count == 0 || folders.Count == 0)
+            {
+                MessageBox.Show("Item '" + filePath + "' is not mapped. Please edit mapping.", "Configuration Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (files.Count > 1 || folders.Count > 1)
+            {
+                MessageBox.Show("Item '" + filePath + "' is mapped to more than one item. Please edit mapping.", "Configuration Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            ProjectFileInfo file = files[0];
+            file.Parent = folders[0];
+
+            //todo: check if file.Parent is neede
+            //todo: schow dialog if Test ids are empty
+
+            string fileName = Path.GetFileNameWithoutExtension(filePath);
+            string testItem = file.TestItemTcmId.Replace("tcm:", "");
+            string testTemplate = file.TestTemplateTcmId.Replace("tcm:", "");
+
+            string baseUrl = project.Properties.Item("WebApplication.BrowseURL").Value.ToString().TrimEnd('/');
+            project.Properties.Item("WebApplication.StartPageUrl").Value = baseUrl + "/"+ fileName + "/"+ testItem + "/" + testTemplate;
+
+            //run debugger
+            SolutionBuild sb = solution.SolutionBuild;
+            sb.Debug();
+        }
+
         #endregion
 
         #region Tridion Blueprint

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!--
+  c:\Users\admin\AppData\Local\Microsoft\VisualStudio\14.0Exp\Extensions\
+  -->
+  
+  <!--  This is the file that defines the actual layout and type of the commands.
+        It is divided in different sections (e.g. command definition, command
+        placement, ...), with each defining a specific set of properties.
+        See the comment before each section for more details about how to
+        use it. -->
+
+  <!--  The VSCT compiler (the tool that translates this file into the binary
+        format that VisualStudio will consume) has the ability to run a preprocessor
+        on the vsct file; this preprocessor is (usually) the C++ preprocessor, so
+        it is possible to define includes and macros with the same syntax used
+        in C++ files. Using this ability of the compiler here, we include some files
+        defining some of the constants that we will use inside the file. -->
+
+  <!--This is the file that defines the IDs for all the commands exposed by VisualStudio. -->
+  <Extern href="stdidcmd.h" />
+
+  <!--This header contains the command ids for the menus provided by the shell. -->
+  <Extern href="vsshlids.h" />
+
+  <!--The Commands section is where commands, menus, and menu groups are defined.
+      This section uses a Guid to identify the package that provides the command defined inside it. -->
+  <Commands package="guidTridionVSRazorExtensionPackage">
+    <!-- Inside this section we have different sub-sections: one for the menus, another
+    for the menu groups, one for the buttons (the actual commands), one for the combos
+    and the last one for the bitmaps used. Each element is identified by a command id that
+    is a unique pair of guid and numeric identifier; the guid part of the identifier is usually
+    called "command set" and is used to group different command inside a logically related
+    group; your package should define its own command set in order to avoid collisions
+    with command ids defined by other packages. -->
+
+    <!-- In this section you can define new menu groups. A menu group is a container for
+         other menus or buttons (commands); from a visual point of view you can see the
+         group as the part of a menu contained between two lines. The parent of a group
+         must be a menu. -->
+    <Groups>
+      <Group guid="guidToolsMenuCmdSet" id="ToolsMenuGroupId" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS" />
+      </Group>
+      <Group guid="guidItemContextMenuCmdSet" id="ItemContextMenuGroupId" priority="0x0100">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_ITEMNODE" />
+      </Group>
+      <Group guid="guidFolderContextMenuCmdSet" id="FolderContextMenuGroupId" priority="0x0100">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_FOLDERNODE" />
+      </Group>
+    </Groups>
+
+    <!--Buttons section. -->
+    <!--This section defines the elements the user can interact with, like a menu command or a button
+        or combo box in a toolbar. -->
+    <Buttons>
+      <!--To define a menu group you have to specify its ID, the parent menu and its display priority.
+          The command is visible and enabled by default. If you need to change the visibility, status, etc, you can use
+          the CommandFlag node.
+          You can add more than one CommandFlag node e.g.:
+              <CommandFlag>DefaultInvisible</CommandFlag>
+              <CommandFlag>DynamicVisibility</CommandFlag>
+          If you do not want an image next to your command, remove the Icon node /> -->
+      <Button guid="guidToolsMenuCmdSet" id="MappingWindowCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidToolsMenuCmdSet" id="ToolsMenuGroupId" />
+        <Icon guid="guidImages" id="bmpTridion" />
+        <Strings>
+          <ButtonText>Tridion Razor Extension</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidItemContextMenuCmdSet" id="ItemContextCommandId" priority="0x0110" type="Button">
+        <Parent guid="guidItemContextMenuCmdSet" id="ItemContextMenuGroupId" />
+        <Icon guid="guidImages" id="bmpTridion" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Sync with Tridion</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidItemContextMenuCmdSet" id="ItemContextDebugCommandId" priority="0x0120" type="Button">
+        <Parent guid="guidItemContextMenuCmdSet" id="ItemContextMenuGroupId" />
+        <Icon guid="guidImagesDebug" id="bmpDebug" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Debug</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidItemContextMenuCmdSet" id="ItemContextDeleteCommandId" priority="0x0130" type="Button">
+        <Parent guid="guidItemContextMenuCmdSet" id="ItemContextMenuGroupId" />
+        <Icon guid="guidImagesDelete" id="bmpDelete" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Delete VS and Tridion</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidFolderContextMenuCmdSet" id="FolderContextCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidFolderContextMenuCmdSet" id="FolderContextMenuGroupId" />
+        <Icon guid="guidImages" id="bmpTridion" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Sync with Tridion</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+
+    <Bitmaps>
+      <Bitmap guid="guidImages" href="Resources\tridion.png" usedList="bmpTridion" />
+      <Bitmap guid="guidImagesDelete" href="Resources\delete.png" usedList="bmpDelete" />
+      <Bitmap guid="guidImagesDebug" href="Resources\delete.png" usedList="bmpDebug" />
+    </Bitmaps>
+  
+  </Commands>
+
+  <Symbols>
+    <!-- This is the package guid. -->
+    <GuidSymbol name="guidTridionVSRazorExtensionPackage" value="{b7b232e7-2d51-4912-adac-57acb1c390b9}" />
+
+    <!-- This is the guid used to group the menu commands together -->
+    <GuidSymbol name="guidToolsMenuCmdSet" value="{d317994e-e23e-4f41-97e0-0668cf16ae11}">
+      <IDSymbol name="ToolsMenuGroupId" value="0x1020" />
+      <IDSymbol name="MappingWindowCommandId" value="0x0120" />
+    </GuidSymbol>
+    
+    <GuidSymbol name="guidItemContextMenuCmdSet" value="{0afcfbb1-8ba4-419e-bcef-61acd1516245}">
+      <IDSymbol name="ItemContextMenuGroupId" value="0x1030" />
+      <IDSymbol name="ItemContextCommandId" value="0x0130" />
+      <IDSymbol name="ItemContextDeleteCommandId" value="0x0140" />
+      <IDSymbol name="ItemContextDebugCommandId" value="0x0150" />
+    </GuidSymbol>
+    
+    <GuidSymbol name="guidFolderContextMenuCmdSet" value="{375f73ad-0a47-4241-b7ba-e505a41a80c3}">
+      <IDSymbol name="FolderContextMenuGroupId" value="0x1040" />
+      <IDSymbol name="FolderContextCommandId" value="0x0140" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidImages" value="{69b21c09-ecaa-442e-af8b-db7a32ebd446}">
+      <IDSymbol name="bmpTridion" value="1" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidImagesDelete" value="{cd7679b8-56ff-4df7-b76c-cb9650a6f8be}">
+      <IDSymbol name="bmpDelete" value="1" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidImagesDebug" value="{e3eedb4e-0e1a-447f-a33c-8cc562ded94b}">
+      <IDSymbol name="bmpDebug" value="1" />
+    </GuidSymbol>
+
+  </Symbols>
+</CommandTable>

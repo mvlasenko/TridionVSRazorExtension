@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell;
-using SDL.TridionVSRazorExtension.Common.Misc;
 
 namespace SDL.TridionVSRazorExtension.Command
 {
@@ -105,17 +104,7 @@ namespace SDL.TridionVSRazorExtension.Command
                 }
 
                 var file = applicationObject.SelectedItems.Cast<SelectedItem>().Where(item => item.Name.EndsWith(".cshtml")).Select(item => item.ProjectItem.FileNames[0]).FirstOrDefault();
-
-                string baseUrl = project.Properties.Item("WebApplication.BrowseURL").Value.ToString();
-
-                //todo
-                project.Properties.Item("WebApplication.StartPageUrl").Value = baseUrl + "Annual Event Detail TBB/4042-29578/5057-30730-32";
-
-                //run debugger
-                SolutionBuild sb = solution.SolutionBuild;
-                sb.Debug();
-
-                //todo: image
+                MainService.RunFile(file, project, solution);
             }
         }
 
@@ -132,7 +121,7 @@ namespace SDL.TridionVSRazorExtension.Command
                 {
                     foreach (SelectedItem item in applicationObject.SelectedItems)
                     {
-                        if (!item.Name.EndsWith(".cshtml") && !item.Name.IsAllowedMimeType())
+                        if (!item.Name.EndsWith(".cshtml"))
                         {
                             menuCommand.Visible = false;
                         }
