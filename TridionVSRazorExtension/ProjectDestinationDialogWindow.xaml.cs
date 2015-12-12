@@ -4,6 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Linq;
+using SDL.TridionVSRazorExtension.Common.Configuration;
+using SDL.TridionVSRazorExtension.Common.Misc;
 
 namespace SDL.TridionVSRazorExtension
 {

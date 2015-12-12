@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.tridion.com/ContentManager/5.0/Instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tridion.com/ContentManager/5.0/Instance" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:annotation>
+		<xsd:documentation>This is the Tridion Content Manager Schema for Instances. This schema is typically imported in custom schemas.</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.w3.org/1999/xlink" schemaLocation="cm_lnk.xsd"/>
+	<xsd:complexType name="SimpleLink">
+		<xsd:annotation>
+			<xsd:documentation>Used to create XLink compliant link elements (e.g. for Component Links)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute ref="xlink:type" use="optional" fixed="simple"/>
+		<xsd:attribute ref="xlink:title" use="optional"/>
+		<xsd:attribute ref="xlink:href" use="required"/>
+	</xsd:complexType>
+	<xsd:element name="LineBreak">
+		<xsd:annotation>
+			<xsd:documentation>Used in multi line text fields to indicate a line break.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="MultiLineText" mixed="true">
+		<xsd:annotation>
+			<xsd:documentation>Multi line text field</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="LineBreak" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XHTML" mixed="true">
+		<xsd:annotation>
+			<xsd:documentation>XHTML field</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:any namespace="http://www.w3.org/1999/xhtml" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using SDL.TridionVSRazorExtension.Common.Configuration;
 
 namespace SDL.TridionVSRazorExtension
 {

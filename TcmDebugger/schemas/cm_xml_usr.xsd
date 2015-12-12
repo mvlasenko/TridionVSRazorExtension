@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:annotation>
+		<xsd:documentation>This schema is included in the Tridion Content Manager system schema. It allows customization of some of the system schema type definitions.</xsd:documentation>
+	</xsd:annotation>
+	<xsd:simpleType name="Title">
+		<xsd:annotation>
+			<xsd:documentation>Restrictions for item titles</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:normalizedString">
+			<xsd:minLength value="1" fixed="false"/>
+			<xsd:maxLength value="255"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="OrgItemTitle">
+		<xsd:annotation>
+			<xsd:documentation>Restrictions for organizational item titles</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:normalizedString">
+			<xsd:minLength value="1" fixed="false"/>
+			<xsd:maxLength value="255"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="FileName">
+		<xsd:annotation>
+			<xsd:documentation>Simple type used to restrict file names</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="512"/>
+			<xsd:pattern value="[-a-zA-Z0-9!\(\)_~.&amp;\ ]+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Directory">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="255"/>
+			<xsd:pattern value="[-a-zA-Z0-9!\(\)_~.]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="FileExtension">
+		<xsd:annotation>
+			<xsd:documentation>Simple type used to restrict file extensions</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="32"/>
+			<xsd:pattern value="[a-zA-Z0-9!\(\)_~]+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="FilePath">
+		<xsd:annotation>
+			<xsd:documentation>Simple type used to restrict file paths</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="256"/>
+			<xsd:pattern value="[a-zA-Z0-9!\(\)_~.\\]+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

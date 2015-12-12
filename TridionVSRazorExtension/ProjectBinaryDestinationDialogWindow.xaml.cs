@@ -3,6 +3,8 @@ using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Linq;
+using SDL.TridionVSRazorExtension.Common.Configuration;
+using SDL.TridionVSRazorExtension.Common.Misc;
 
 namespace SDL.TridionVSRazorExtension
 {
@@ -30,7 +32,7 @@ namespace SDL.TridionVSRazorExtension
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            string extension = Functions.GetMultimediaComponentFileExtension(this.Mapping, this.TridionTcmId);
+            string extension = MainService.GetMultimediaComponentFileExtension(this.Mapping, this.TridionTcmId);
 
             this.txtTitle.Text = this.TridionTitle == Path.GetFileNameWithoutExtension(this.TridionTitle) ? this.TridionTitle + extension : this.TridionTitle;
 

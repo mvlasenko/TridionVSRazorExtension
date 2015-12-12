@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using SDL.TridionVSRazorExtension.Misc;
 
 namespace SDL.TridionVSRazorExtension
 {

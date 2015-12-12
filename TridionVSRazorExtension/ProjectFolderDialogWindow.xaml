@@ -43,19 +43,24 @@
                 <Label Content="Role" Height="28" HorizontalAlignment="Right" Name="lblRole" Margin="2" Grid.Row="0" Grid.Column="0" />
                 <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" >
                     <ComboBox Height="23" HorizontalAlignment="Left" Name="cbRoles" Width="240" Margin="2" SelectionChanged="cbRoles_SelectionChanged" />
-                    <CheckBox Content="Template" Height="16" HorizontalAlignment="Left" Name="chkSyncTemplate" VerticalAlignment="Center" Margin="6" Checked="chkFileProperty_Checked" Unchecked="chkFileProperty_Checked" IsThreeState="False" />
+                    <Button Content="Debug Settings" Height="23" HorizontalAlignment="Left" Margin="6" Name="btnDebug" VerticalAlignment="Center" Width="120" Click="btnDebug_Click" />
                 </StackPanel>
 
                 <Label Content="Title" Height="28" HorizontalAlignment="Right" Name="lblTitle" Margin="2" Grid.Row="1" Grid.Column="0" />
-                <TextBox Height="23" HorizontalAlignment="Left" Name="txtTitle" Margin="2" Width="388" Grid.Row="1" Grid.Column="1" LostFocus="txtTitle_OnLostFocus" />
+                <TextBox Height="23" HorizontalAlignment="Left" Name="txtTitle" Margin="2" Width="400" Grid.Row="1" Grid.Column="1" LostFocus="txtTitle_OnLostFocus" />
 
                 <Label Content="Template Title" Height="28" HorizontalAlignment="Right" Name="lblTemplateTitle" Margin="2" Grid.Row="2" Grid.Column="0" />
-                <TextBox Height="23" HorizontalAlignment="Left" Name="txtTemplateTitle" Margin="2" Width="388" Grid.Row="2" Grid.Column="1" LostFocus="txtTemplateTitle_OnLostFocus" />
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                    <TextBox Height="23" HorizontalAlignment="Left" Name="txtTemplateTitle" Margin="2" Width="240"  LostFocus="txtTemplateTitle_OnLostFocus" />
+                    <CheckBox Content="Template" Height="16" HorizontalAlignment="Left" Name="chkSyncTemplate" VerticalAlignment="Center" Margin="6" Checked="chkSyncTemplate_Checked" Unchecked="chkSyncTemplate_Checked" IsThreeState="False" />
+                </StackPanel>
+                
+                
 
             </Grid>
 
             <Label Content="Tridion Folder" Height="23" HorizontalAlignment="Left" Name="lblTridionFolders" VerticalAlignment="Top" Margin="2" />
-            <ListBox Height="36" HorizontalAlignment="Center" Name="lstTridionFolders" VerticalAlignment="Center" Width="472" Margin="2" />
+            <ListBox Height="36" HorizontalAlignment="Left" Name="lstTridionFolders" VerticalAlignment="Center" Width="482" Margin="6" />
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -71,7 +76,7 @@
                 <TextBox Height="104" HorizontalAlignment="Left" Name="txtTemplateFormat" VerticalAlignment="Top" Width="340" Margin="6,0,0,0" Grid.Column="0" Grid.Row="1" LostFocus="txtTemplateFormat_OnLostFocus" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
 
                 <Label Content="Schema Names" Height="28" HorizontalAlignment="Left" Name="lblSchemaNames" VerticalAlignment="Bottom" Margin="6,0,0,0" Grid.Column="1" Grid.Row="0" />
-                <TextBox Height="104" HorizontalAlignment="Left" Name="txtSchemaNames" VerticalAlignment="Top" Width="120" Margin="6,0,0,0" Grid.Column="1" Grid.Row="1" LostFocus="txtSchemaNames_OnLostFocus" />
+                <TextBox Height="104" HorizontalAlignment="Left" Name="txtSchemaNames" VerticalAlignment="Top" Width="130" Margin="6,0,0,0" Grid.Column="1" Grid.Row="1" LostFocus="txtSchemaNames_OnLostFocus" />
 
             </Grid>
 

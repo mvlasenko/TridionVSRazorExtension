@@ -4,6 +4,9 @@ using System.IO;
 using System.Windows;
 using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Media;
+using SDL.TridionVSRazorExtension.Common.Configuration;
+using SDL.TridionVSRazorExtension.Common.Misc;
 
 namespace SDL.TridionVSRazorExtension
 {
@@ -12,6 +15,7 @@ namespace SDL.TridionVSRazorExtension
         public string RootPath { private get; set; }
         public List<TridionFolderInfo> TridionFolders { private get; set; }
         public ProjectFolderInfo CurrentProjectFolder { get; set; }
+        public MappingInfo CurrentMapping { get; set; }
 
         private ProjectItemInfo _ProjectItem;
         private ProjectFolderInfo _TopFolder;
@@ -26,7 +30,7 @@ namespace SDL.TridionVSRazorExtension
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this._ProjectItem = this.CurrentProjectFolder;
-            this._AllTree = Functions.GetFileTree(this.CurrentProjectFolder, this.RootPath);
+            this._AllTree = Service.GetFileTree(this.CurrentProjectFolder, this.RootPath);
             this._TopFolder = this.CurrentProjectFolder;
 
             this.CurrentProjectFolder.Expand();
@@ -36,9 +40,8 @@ namespace SDL.TridionVSRazorExtension
             this.cbRoles.SelectedValue = this.CurrentProjectFolder.ProjectFolderRole;
             this.cbRoles.IsEnabled = true;
 
-            this.SetComboVisibility();
             this.SetVisibility(this.CurrentProjectFolder.ProjectFolderRole);
-            this.SetContent();
+            this.SetForm();
         }
 
         private void SetVisibility(ProjectFolderRole role)
@@ -90,14 +93,11 @@ namespace SDL.TridionVSRazorExtension
             this.lstTridionFolders.IsEnabled = items.Count > 1;
         }
 
-        private void SetComboVisibility()
-        {
-            this.cbRoles.IsEnabled = this._ProjectItem.IsFolder;
-        }
-
-        private void SetContent()
+        private void SetForm()
         {
             ProjectFolderRole role = this._TopFolder.ProjectFolderRole;
+
+            this.cbRoles.IsEnabled = this._ProjectItem.IsFolder;
 
             this.chkSyncTemplate.IsEnabled = this._ProjectItem.IsFile && (role == ProjectFolderRole.ComponentLayout || role == ProjectFolderRole.PageLayout);
             if (role == ProjectFolderRole.ComponentLayout || role == ProjectFolderRole.PageLayout)
@@ -107,6 +107,17 @@ namespace SDL.TridionVSRazorExtension
             else
             {
                 this.chkSyncTemplate.IsChecked = false;
+            }
+
+            this.btnDebug.IsEnabled = this._ProjectItem.IsFile && (role == ProjectFolderRole.ComponentLayout || role == ProjectFolderRole.PageLayout);
+            if (this.btnDebug.IsEnabled)
+            {
+                ProjectFileInfo projectFile = (ProjectFileInfo) this._ProjectItem;
+                this.btnDebug.Foreground = new SolidColorBrush(!string.IsNullOrEmpty(projectFile.TestItemTcmId) && !string.IsNullOrEmpty(projectFile.TestTemplateTcmId) ? Colors.Green : Colors.Red);
+            }
+            else
+            {
+                this.btnDebug.Foreground = new SolidColorBrush(Colors.Gray);
             }
 
             this.cbRoles.SelectedValue = role;
@@ -181,7 +192,7 @@ namespace SDL.TridionVSRazorExtension
 
                     this.txtTemplateTitle.Text = String.IsNullOrEmpty(file.TemplateTitle) ? (string.IsNullOrEmpty(title) ? null : title.Replace(" Layout", "")) : file.TemplateTitle;
                     file.TemplateTitle = String.IsNullOrEmpty(this.txtTemplateTitle.Text) ? null : this.txtTemplateTitle.Text;
-                    this.txtTemplateTitle.IsEnabled = true;
+                    this.txtTemplateTitle.IsEnabled = this.chkSyncTemplate.IsChecked == true;
                 }
             }
 
@@ -283,16 +294,14 @@ namespace SDL.TridionVSRazorExtension
             if (this._ProjectItem == null)
                 return;
 
-            ProjectFolderInfo selectedFolder = Functions.GetSelectedFolderFromTree(this._AllTree);
+            ProjectFolderInfo selectedFolder = Service.GetSelectedFolderFromTree(this._AllTree);
             if (selectedFolder != null)
                 this._TopFolder = selectedFolder;
-
-            this.SetComboVisibility();
 
             if (this._TopFolder != null)
                 this.SetVisibility(this._TopFolder.ProjectFolderRole);
             
-            this.SetContent();
+            this.SetForm();
         }
 
         private void TreeViewItem_Checked(object sender, RoutedEventArgs e)
@@ -304,7 +313,7 @@ namespace SDL.TridionVSRazorExtension
             if (this._ProjectItem.Handled)
                 return;
 
-            ProjectFolderInfo selectedFolder = Functions.GetSelectedFolderFromTree(this._AllTree);
+            ProjectFolderInfo selectedFolder = Service.GetSelectedFolderFromTree(this._AllTree);
             if (selectedFolder != null)
                 this._TopFolder = selectedFolder;
 
@@ -313,7 +322,7 @@ namespace SDL.TridionVSRazorExtension
             this.SetParentProperties(this._ProjectItem);
         }
 
-        private void chkFileProperty_Checked(object sender, RoutedEventArgs e)
+        private void chkSyncTemplate_Checked(object sender, RoutedEventArgs e)
         {
             if (this._ProjectItem == null)
                 return;
@@ -321,6 +330,8 @@ namespace SDL.TridionVSRazorExtension
             this._ProjectItem.SyncTemplate = this.chkSyncTemplate.IsChecked;
 
             this.SetParentProperties(this._ProjectItem);
+
+            this.txtTemplateTitle.IsEnabled = this.chkSyncTemplate.IsChecked == true;
         }
 
         private void txtTitle_OnLostFocus(object sender, RoutedEventArgs e)
@@ -389,8 +400,8 @@ namespace SDL.TridionVSRazorExtension
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            this._AllTree = Functions.GetFileTree(this._TopFolder, this.RootPath);
-            this.CurrentProjectFolder = Functions.GetSelectedFolderFromTree(this._AllTree);
+            this._AllTree = Service.GetFileTree(this._TopFolder, this.RootPath);
+            this.CurrentProjectFolder = Service.GetSelectedFolderFromTree(this._AllTree);
 
             if (this.CurrentProjectFolder != null && this.lstTridionFolders.SelectedIndex >= 0)
             {
@@ -430,5 +441,26 @@ namespace SDL.TridionVSRazorExtension
             this.Close();
         }
 
+        private void btnDebug_Click(object sender, RoutedEventArgs e)
+        {
+            ProjectFileInfo file = this._ProjectItem as ProjectFileInfo;
+            if (file == null)
+                return;
+
+            SelectTridionDebugDialogWindow dialog = new SelectTridionDebugDialogWindow();
+            dialog.TbbTcmId = file.TcmId;
+            dialog.TestItemTcmId = file.TestItemTcmId;
+            dialog.TestTemplateTcmId = file.TestTemplateTcmId;
+            dialog.CurrentMapping = this.CurrentMapping;
+
+            bool res = dialog.ShowDialog() == true;
+            if (res)
+            {
+                file.TestItemTcmId = dialog.TestItemTcmId;
+                file.TestTemplateTcmId = dialog.TestTemplateTcmId;
+
+                this.btnDebug.Foreground = new SolidColorBrush(Colors.Green);
+            }
+        }
     }
 }

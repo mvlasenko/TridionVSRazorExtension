@@ -1,0 +1,1429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tcmapi="http://www.tridion.com/ContentManager/5.0/TCMAPI" xmlns:tcm="http://www.tridion.com/ContentManager/5.0" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://www.tridion.com/ContentManager/5.0/TCMAPI" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:simpleType name="itemFilterType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="XMLReadContext"/>
+			<xsd:enumeration value="XMLReadBluePrintInfo"/>
+			<xsd:enumeration value="XMLReadVersionInfo"/>
+			<xsd:enumeration value="XMLReadPublishInfo"/>
+			<xsd:enumeration value="XMLReadAllowedActionsInfo"/>
+			<xsd:enumeration value="XMLReadDataNoContent"/>
+			<xsd:enumeration value="XMLReadDataContent"/>
+			<xsd:enumeration value="XMLReadPermissions"/>
+			<xsd:enumeration value="XMLReadWorkflowInfo"/>
+			<xsd:enumeration value="XMLReadLocationInfo"/>
+			<xsd:enumeration value="XMLReadPublishInfoDetails"/>
+			<xsd:enumeration value="XMLReadWebDAVURLs"/>
+			<xsd:enumeration value="XMLReadInfo"/>
+			<xsd:enumeration value="XMLReadData"/>
+			<xsd:enumeration value="XMLReadAll"/>
+			<xsd:enumeration value="XMLReadExpanded"/>
+			<xsd:enumeration value="XMLReadKeywordXLinks"/>
+			<xsd:enumeration value="XMLReadNoLoggingOfWarnings"/>
+			<xsd:enumeration value="1"/>
+			<xsd:enumeration value="2"/>
+			<xsd:enumeration value="4"/>
+			<xsd:enumeration value="8"/>
+			<xsd:enumeration value="16"/>
+			<xsd:enumeration value="32"/>
+			<xsd:enumeration value="64"/>
+			<xsd:enumeration value="256"/>
+			<xsd:enumeration value="512"/>
+			<xsd:enumeration value="1024"/>
+			<xsd:enumeration value="16384"/>
+			<xsd:enumeration value="1566"/>
+			<xsd:enumeration value="96"/>
+			<xsd:enumeration value="1919"/>
+			<xsd:enumeration value="65536"/>
+			<xsd:enumeration value="32768"/>
+			<xsd:enumeration value="8192"/>
+			<xsd:enumeration value="131072"/>
+			<xsd:enumeration value="262144"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="itemType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Publication"/>
+			<xsd:enumeration value="Folder"/>
+			<xsd:enumeration value="StructureGroup"/>
+			<xsd:enumeration value="Schema"/>
+			<xsd:enumeration value="Component"/>
+			<xsd:enumeration value="ComponentTemplate"/>
+			<xsd:enumeration value="Page"/>
+			<xsd:enumeration value="PageTemplate"/>
+			<xsd:enumeration value="TargetGroup"/>
+			<xsd:enumeration value="Category"/>
+			<xsd:enumeration value="Keyword"/>
+			<xsd:enumeration value="TemplateBuildingBlock"/>
+			<xsd:enumeration value="PublicationTarget"/>
+			<xsd:enumeration value="TargetType"/>
+			<xsd:enumeration value="TargetDestination"/>
+			<xsd:enumeration value="MultimediaType"/>
+			<xsd:enumeration value="User"/>
+			<xsd:enumeration value="Group"/>
+			<xsd:enumeration value="ScheduleItem"/>
+			<xsd:enumeration value="DirectoryService"/>
+			<xsd:enumeration value="DirectoryGroupMapping"/>
+			<xsd:enumeration value="MultipleOperations"/>
+			<xsd:enumeration value="ApprovalStatus"/>
+			<xsd:enumeration value="ProcessDefinition"/>
+			<xsd:enumeration value="ProcessInstance"/>
+			<xsd:enumeration value="ProcessHistory"/>
+			<xsd:enumeration value="ActivityDefinition"/>
+			<xsd:enumeration value="ActivityInstance"/>
+			<xsd:enumeration value="ActivityHistory"/>
+			<xsd:enumeration value="WorkItem"/>
+			<xsd:enumeration value="VirtualFolder"/>
+			<xsd:enumeration value="PublishTransaction"/>
+			<xsd:enumeration value="1"/>
+			<xsd:enumeration value="2"/>
+			<xsd:enumeration value="4"/>
+			<xsd:enumeration value="8"/>
+			<xsd:enumeration value="16"/>
+			<xsd:enumeration value="32"/>
+			<xsd:enumeration value="64"/>
+			<xsd:enumeration value="128"/>
+			<xsd:enumeration value="256"/>
+			<xsd:enumeration value="512"/>
+			<xsd:enumeration value="1024"/>
+			<xsd:enumeration value="2048"/>
+			<xsd:enumeration value="8192"/>
+			<xsd:enumeration value="65537"/>
+			<xsd:enumeration value="65538"/>
+			<xsd:enumeration value="65540"/>
+			<xsd:enumeration value="65544"/>
+			<xsd:enumeration value="65552"/>
+			<xsd:enumeration value="65568"/>
+			<xsd:enumeration value="65600"/>
+			<xsd:enumeration value="65664"/>
+			<xsd:enumeration value="65792"/>
+			<xsd:enumeration value="66048"/>
+			<xsd:enumeration value="66560"/>
+			<xsd:enumeration value="131073"/>
+			<xsd:enumeration value="131074"/>
+			<xsd:enumeration value="131076"/>
+			<xsd:enumeration value="131080"/>
+			<xsd:enumeration value="131088"/>
+			<xsd:enumeration value="131104"/>
+			<xsd:enumeration value="131136"/>
+			<xsd:enumeration value="131200"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="listFilterType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="XMLListID"/>
+			<xsd:enumeration value="XMLListIDAndTitle"/>
+			<xsd:enumeration value="XMLListDefault"/>
+			<xsd:enumeration value="XMLListExtended"/>
+			<xsd:enumeration value="XMLListAllowedActions"/>
+			<xsd:enumeration value="XMLListCheckOutUser"/>
+			<xsd:enumeration value="XMLListVersions"/>
+			<xsd:enumeration value="XMLListURL"/>
+			<xsd:enumeration value="XMLListXMLName"/>
+			<xsd:enumeration value="XMLListPubTitleAndItemPath"/>
+			<xsd:enumeration value="XMLListPath"/>
+			<xsd:enumeration value="1"/>
+			<xsd:enumeration value="3"/>
+			<xsd:enumeration value="7"/>
+			<xsd:enumeration value="15"/>
+			<xsd:enumeration value="16"/>
+			<xsd:enumeration value="32"/>
+			<xsd:enumeration value="128"/>
+			<xsd:enumeration value="256"/>
+			<xsd:enumeration value="512"/>
+			<xsd:enumeration value="1024"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="listType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ListCheckedOutItems"/>
+			<xsd:enumeration value="ListCodePages"/>
+			<xsd:enumeration value="ListDirectoryServices"/>
+			<xsd:enumeration value="ListGroupMembers"/>
+			<xsd:enumeration value="ListGroups"/>
+			<xsd:enumeration value="ListHistory"/>
+			<xsd:enumeration value="ListItems"/>
+			<xsd:enumeration value="ListLocale"/>
+			<xsd:enumeration value="ListMultimediaTypes"/>
+			<xsd:enumeration value="ListProtocolSchemas"/>
+			<xsd:enumeration value="ListVirtualFolderTypes"/>
+			<xsd:enumeration value="ListPublications"/>
+			<xsd:enumeration value="ListPublicationTargets"/>
+			<xsd:enumeration value="ListPublicationTypes"/>
+			<xsd:enumeration value="ListPublishQueue"/>
+			<xsd:enumeration value="ListTargetTypes"/>
+			<xsd:enumeration value="ListComponentTemplates"/>
+			<xsd:enumeration value="ListUsedIn"/>
+			<xsd:enumeration value="ListUsers"/>
+			<xsd:enumeration value="ListUses"/>
+			<xsd:enumeration value="ListWFActivityHistories"/>
+			<xsd:enumeration value="ListWFActivities"/>
+			<xsd:enumeration value="ListWFApprovalStatuses"/>
+			<xsd:enumeration value="ListWFAssignments"/>
+			<xsd:enumeration value="ListWFManagers"/>
+			<xsd:enumeration value="ListWFNextActivities"/>
+			<xsd:enumeration value="ListWFProcessDefinitions"/>
+			<xsd:enumeration value="ListWFProcessHistory"/>
+			<xsd:enumeration value="ListWFProcessInstances"/>
+			<xsd:enumeration value="ListWFWork"/>
+			<xsd:enumeration value="ListOrganizationalItems"/>
+			<xsd:enumeration value="ListPublishTransactions"/>
+			<xsd:enumeration value="ListQueues"/>
+			<xsd:enumeration value="ListQueueConsumers"/>
+			<xsd:enumeration value="ListQueuedMessages"/>
+			<xsd:enumeration value="ListClassifiedItems"/>
+			<xsd:enumeration value="ListTaxonomies"/>
+			<xsd:enumeration value="ListCategories"/>
+			<xsd:enumeration value="ListChildCategories"/>
+			<xsd:enumeration value="ListTemplateTypes"/>
+			<xsd:enumeration value="ListGroupMemberships"/>
+			<xsd:enumeration value="ListChildKeywords"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="openModeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="OpenModeView"/>
+			<xsd:enumeration value="OpenModeEdit"/>
+			<xsd:enumeration value="OpenModeEditWithFallback"/>
+			<xsd:enumeration value="OpenModeViewOrEdit"/>
+			<xsd:enumeration value="OpenModeViewInAssignmentList"/>
+			<xsd:enumeration value="1"/>
+			<xsd:enumeration value="2"/>
+			<xsd:enumeration value="3"/>
+			<xsd:enumeration value="4"/>
+			<xsd:enumeration value="5"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="keywordSortTypeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Title"/>
+			<xsd:enumeration value="Description"/>
+			<xsd:enumeration value="Key"/>
+			<xsd:enumeration value="0"/>
+			<xsd:enumeration value="1"/>
+			<xsd:enumeration value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="tcmURI">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:complexType name="ConditionFilter">
+		<xsd:annotation>
+			<xsd:documentation>Used to specify conditions on certain Requests.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="name" type="xsd:normalizedString" use="required"/>
+		<xsd:attribute name="value" type="xsd:normalizedString" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="ExpandDataField">
+		<xsd:annotation>
+			<xsd:documentation>Used to expand any XLink field in the item being retrieved.  Expanding a field will return to the complete XML structure for the specified XLink item.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:any namespace="http://www.tridion.com/ContentManager/5.0" minOccurs="0"/>
+			<xsd:element name="ExpandDataField" type="tcmapi:ExpandDataField" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="fieldName" type="xsd:normalizedString" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Must represent a non namespace qualified element name that is a direct child of the Data element.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="ListFilter">
+		<xsd:annotation>
+			<xsd:documentation>Specifies a ListFilter on certain Requests. Used to limit the results for Requests that might return a lot of data.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="type" type="tcmapi:listFilterType" use="required"/>
+	</xsd:complexType>
+	<xsd:element name="Message">
+		<xsd:annotation>
+			<xsd:documentation>A message may contain one or more requests.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:choice>
+				<xsd:element name="Request" type="tcmapi:Request" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>Represents an action to be performed against the Content Manager.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="Response" type="tcmapi:Response" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>Represents the outcome of the processed request.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:attribute name="version" use="required">
+				<xsd:annotation>
+					<xsd:documentation>Specifies the version of the message.  This is used to identify the markup of the message.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="5.0"/>
+						<xsd:enumeration value="5.1"/>
+						<xsd:enumeration value="5.2"/>
+            <xsd:enumeration value="5.3"/>
+            <xsd:enumeration value="5.4"/>
+            <xsd:enumeration value="6.0"/>
+            <xsd:enumeration value="6.1"/>
+          </xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name="from" type="xsd:string" use="optional">
+				<xsd:annotation>
+					<xsd:documentation>Used to specify the source of the message.  This attribute will be returned in the message containing the response.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="failOnError" type="xsd:boolean" use="optional" default="false">
+				<xsd:annotation>
+					<xsd:documentation>Specifies if the processing of multiple requests should stop when an error occurs.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="webDAVURLPrefix" type="xsd:anyURI" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="Request">
+		<xsd:annotation>
+			<xsd:documentation>XMLResponder request for a specific action.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="AssignActivity">
+				<xsd:annotation>
+					<xsd:documentation>Used to assign a workflow activity.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required"/>
+					<xsd:attribute name="assignee" type="tcmapi:tcmURI" use="required"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="CheckIn">
+				<xsd:annotation>
+					<xsd:documentation>Used to perform a Check-In action on a TCM item.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of the item to check-in.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="permanent" type="xsd:boolean" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies if the lock applied was permanent or temporary.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="readItem" type="xsd:boolean" use="optional" default="true"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="CheckOut">
+				<xsd:annotation>
+					<xsd:documentation>Used to perform a Check-Out action on a TCM item.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of the item to check-out.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="permanent" type="xsd:boolean" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies if the lock applied is permanent or temporary.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="readItem" type="xsd:boolean" use="optional" default="true"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Classify">
+				<xsd:annotation>
+					<xsd:documentation>Used to classify an existing TCM item.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Keyword" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+									<xsd:annotation>
+										<xsd:documentation>The identifier of the Keyword to classify the specified item with.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:attribute>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of the item to classify.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="readItem" type="xsd:boolean" use="optional" default="true"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="UnClassify">
+				<xsd:annotation>
+					<xsd:documentation>Used to unclassify an existing TCM item.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Keyword" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+									<xsd:annotation>
+										<xsd:documentation>The identifier of the Keyword to be removed as classification of the specified item.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:attribute>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of the item to unclassify.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="readItem" type="xsd:boolean" use="optional" default="true"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ReClassify">
+				<xsd:annotation>
+					<xsd:documentation>Used to reclassify an existing TCM item.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="UnClassify">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Keyword" maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+												<xsd:annotation>
+													<xsd:documentation>The identifier of the Keyword to be removed as classification of the specified item.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Classify">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Keyword" maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+												<xsd:annotation>
+													<xsd:documentation>The identifier of the Keyword to be removed as classification of the specified item.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of the item to reclassify.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="readItem" type="xsd:boolean" use="optional" default="true"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ConvertSchema">
+				<xsd:annotation>
+					<xsd:documentation>Used to convert a TridionWebSchema to an XSD or an XSD to a TridionWebSchema.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:any namespace="http://www.tridion.com/ContentManager/5.0" processContents="lax"/>
+					</xsd:sequence>
+					<xsd:attribute name="convertTo" use="required">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:enumeration value="XSD"/>
+								<xsd:enumeration value="TridionWebSchema"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Delete">
+				<xsd:annotation>
+					<xsd:documentation>Used to perform a Delete action on a TCM item.  If a version is specified, the version will be deleted and not the item.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of the item to delete.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="version" type="xsd:int" use="optional">
+						<xsd:annotation>
+							<xsd:documentation>Specifies a specific version of the item to be deleted.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="DeleteBranch">
+				<xsd:annotation>
+					<xsd:documentation>Used to perform a DeleteBranch action on a TCM keyword and its children.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of the item to delete.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Disable">
+				<xsd:annotation>
+					<xsd:documentation>Used to change the status of a TCM user to disabled.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Enable">
+				<xsd:annotation>
+					<xsd:documentation>Used to change the status of a TCM user to enabled.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Execute">
+				<xsd:annotation>
+					<xsd:documentation>Used to execute a scheduled publish action.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the identifier of a scheduled item.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="FinishActivity">
+				<xsd:annotation>
+					<xsd:documentation>Used to finish a workflow activity.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of a started or active WorkItem.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="nextActivityURI" type="tcmapi:tcmURI" use="optional" default="tcm:0-0-0">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the next activity for a manual descision activity.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="message" type="xsd:string" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the finish message.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="fromProcessList" type="xsd:boolean" use="required">
+						<xsd:annotation>
+							<xsd:documentation>This attribute is for internal use only and should always be false.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="FinishProcess">
+				<xsd:annotation>
+					<xsd:documentation>Used to finish a workflow process.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of a ProcessInstance.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetCategoriesXSD">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetEventLogInfo">
+				<xsd:annotation>
+					<xsd:documentation>Used to retrieve the selection criteria for the GetEventLogMessages request.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="GetEventLogMessages">
+				<xsd:annotation>
+					<xsd:documentation>Used to search the eventlog based on the specified criteria. Use GetEventLogInfo to get the criteria for computerName, category and eventSource.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="startDate" type="xsd:dateTime" use="optional"/>
+					<xsd:attribute name="endDate" type="xsd:dateTime" use="optional"/>
+					<xsd:attribute name="computerName" type="xsd:string" use="optional"/>
+					<xsd:attribute name="category" type="xsd:string" use="optional"/>
+					<xsd:attribute name="eventSource" type="xsd:string" use="optional"/>
+					<xsd:attribute name="userName" type="xsd:string" use="optional"/>
+					<xsd:attribute name="returnInformationals" type="xsd:boolean" use="optional" default="true"/>
+					<xsd:attribute name="returnWarnings" type="xsd:boolean" use="optional" default="true"/>
+					<xsd:attribute name="returnErrors" type="xsd:boolean" use="optional" default="true"/>
+					<xsd:attribute name="startLine" type="xsd:int" use="required"/>
+					<xsd:attribute name="numberOfLines" type="xsd:int" use="required"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetEventMessage">
+				<xsd:annotation>
+					<xsd:documentation>Used to get a single message from the eventlog.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="ID" type="xsd:int" use="required"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetGroupMemberships">
+				<xsd:annotation>
+					<xsd:documentation>Used to retrieve a list of MembershipConstraints for a specific User or Group.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required"/>
+					<xsd:attribute name="itemType" type="tcmapi:itemType" use="required"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetInstanceData">
+				<xsd:annotation>
+					<xsd:documentation>Used to retrieve instance data XML from an existing TCM Schema.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>An item identifier, can either be a TCM URI or a WebDAV URL.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="organizationalItemURI" type="tcmapi:tcmURI" use="optional">
+						<xsd:annotation>
+							<xsd:documentation>URI of the Folder, Structure Group or Publication of the Item for which this instance data is used.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetItem">
+				<xsd:annotation>
+					<xsd:documentation>Used to retrieve an XML structure from an existing TCM item.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ItemFilter" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Used to describe what data should be returned.  Specifying multiple filters will combine them and returned the exact data they describe.</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:attribute name="type" type="tcmapi:itemFilterType" use="required"/>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="ExpandDataField" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Used to expand any xlink field contained inside the Data section of a TCM Item. </xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:complexContent>
+									<xsd:extension base="tcmapi:ExpandDataField"/>
+								</xsd:complexContent>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>An item identifier, can either be a TCM URI or a WebDAV URL.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="contextURI" type="tcmapi:tcmURI" use="optional" default="tcm:0-0-0">
+						<xsd:annotation>
+							<xsd:documentation>Can contain a publication identifier when the client wishes to overrule the blueprint context pubication.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="openMode" type="tcmapi:openModeType" use="optional" default="OpenModeView">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the mode or state in which the item should be opened.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="writeBinaryToDisk" type="xsd:boolean" use="optional" default="false">
+						<xsd:annotation>
+							<xsd:documentation>Specifies wether the binary content of a Multimedia component should be written to disk.  When this occurs, the response will contain the filename associated to the binary content.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="binaryPath" type="xsd:string" use="optional">
+						<xsd:annotation>
+							<xsd:documentation>Used in combination with writeBinaryToDisk to specify a location where the binary content should be saved.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetList">
+				<xsd:annotation>
+					<xsd:documentation>Used to retrieve an XML structure listing TCM items.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ListFilter" type="tcmapi:ListFilter" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Used to describe what data should be returned.  Specifying multiple filters will combine them and returned the exact data they describe.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="ConditionFilter" type="tcmapi:ConditionFilter" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Condition filters are used to constrain the returned data.  In this way it is possible to specify which items should be returned based on a predefined condition.  Refer to the API documentation for details.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the Organizational Item on which to retrieve the list.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="listType" type="tcmapi:listType" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the type of list to retrieve.  Note that not all items support all listTypes.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetListKeywords">
+				<xsd:annotation>
+					<xsd:documentation>Used to retrieve an XML structure containing keywords.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ListFilter" type="tcmapi:ListFilter" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Used to describe what data should be returned. Specifying multiple filters will combine them and returned the exact data they describe.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="ConditionFilter" type="tcmapi:ConditionFilter" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Condition filters are used to constrain the returned data.  In this way it is possible to specify which items should be returned based on a predefined condition.  Refer to the API documentation for details.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the Category on which to retrieve the list.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="sortType" type="tcmapi:keywordSortTypeType" use="optional"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetListChildKeywords">
+				<xsd:annotation>
+					<xsd:documentation>Used to retrieve an XML structure containing the childs of a keyword.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ListFilter" type="tcmapi:ListFilter" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Used to describe what data should be returned.  Specifying multiple filters will combine them and returned the exact data they describe.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="ConditionFilter" type="tcmapi:ConditionFilter" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Condition filters are used to constrain the returned data.  In this way it is possible to specify which items should be returned based on a predefined condition.  Refer to the API documentation for details.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required"/>
+					<xsd:attribute name="sortType" type="tcmapi:keywordSortTypeType" use="optional"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetListOrphanKeywords">
+				<xsd:annotation>
+					<xsd:documentation>Used to retrieve an XML structure containing keywords that do not have a parent keyword attached to itself.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ListFilter" type="tcmapi:ListFilter" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Used to describe what data should be returned.  Specifying multiple filters will combine them and returned the exact data they describe.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="ConditionFilter" type="tcmapi:ConditionFilter" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Condition filters are used to constrain the returned data.  In this way it is possible to specify which items should be returned based on a predefined condition.  Refer to the API documentation for details.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the Publication on which to retrieve the list.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="sortType" type="tcmapi:keywordSortTypeType" use="optional"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetListPathToCategory">
+				<xsd:annotation>
+					<xsd:documentation>Used to retrieve an XML structure containing the path to the root category.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ListFilter" type="tcmapi:ListFilter" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Used to describe what data should be returned.  Specifying multiple filters will combine them and returned the exact data they describe.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the Publication on which to retrieve the list.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="categoryURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the Category for which to get the list of items in the path.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="sortType" type="tcmapi:keywordSortTypeType" use="optional"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="DeleteKeywordBranch">
+				<xsd:annotation>
+					<xsd:documentation>This method deletes all the Keywords in the taxonomy branch of the current Keyword.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ConditionFilter" type="tcmapi:ConditionFilter" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>If "ContextPublicationOnly" is specified, only items that are stored in the context Publication will be deleted. This will not delete items in child Publications. Relationships between those items and items that will be deleted will be removed.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the Keyword to remove with all its descendants.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetListDirectoryServiceTestUsers">
+				<xsd:complexType>
+					<xsd:attribute name="directoryService" type="xsd:string" use="required"/>
+					<xsd:attribute name="searchDN" type="xsd:string" use="required"/>
+					<xsd:attribute name="searchType" type="xsd:int" use="required"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetListEnumeratedValues">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Enumeration" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Name">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:enumeration value="PublishPriority"/>
+												<xsd:enumeration value="PublishAction"/>
+												<xsd:enumeration value="PublishTransactionState"/>
+												<xsd:enumeration value="TDSServerSideLanguages"/>
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+								</xsd:sequence>
+								<xsd:attribute name="LocaleID" type="xsd:int" use="optional"/>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetLoggedUser">
+				<xsd:annotation>
+					<xsd:documentation>Used to retrieve the information about the currently logged user.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="GetNewItem">
+				<xsd:annotation>
+					<xsd:documentation>Used to retrieve an XML structure from a new TCM item.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ExpandDataField" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Used to expand any xlink field contained inside the Data section of a TCM Item. </xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:complexContent>
+									<xsd:extension base="tcmapi:ExpandDataField"/>
+								</xsd:complexContent>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="contextURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the location or Organizational Item in which the new item is to be created.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="itemType" type="tcmapi:itemType" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the type of Item to retrieve.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetNonSystemUsers">
+				<xsd:annotation>
+					<xsd:documentation>Used to get a list of domain or directory service users (non-system users).</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="serverType" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies wheter the retrieved list should contain Domain users or Active Directory users.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:enumeration value="Domain"/>
+								<xsd:enumeration value="Directory"/>
+								<xsd:enumeration value="1"/>
+								<xsd:enumeration value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+					<xsd:attribute name="serverName" type="xsd:string" use="optional">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the name of the domain or directory service.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetPublishItems">
+				<xsd:annotation>
+					<xsd:documentation>Used to retrieve a list of (related) items that will be published when sending a publish instruction.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="TargetType" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Specifies the TargetTypes used to publish.</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required"/>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="ListFilter" type="tcmapi:ListFilter" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Used to describe what data should be returned.  Specifying multiple filters will combine them and returned the exact data they describe.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="ConditionFilter" type="tcmapi:ConditionFilter" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Condition filters are used to constrain the returned data.  In this way it is possible to specify which items should be returned based on a predefined condition.  Refer to the API documentation for details.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required"/>
+					<xsd:attribute name="resolveBlueprinting" type="xsd:boolean" use="required"/>
+					<xsd:attribute name="resolveWorkflow" type="xsd:boolean" use="required"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetRollbackComments">
+				<xsd:annotation>
+					<xsd:documentation>Used to retrieve Rollback comments associated to a specific version of an item.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of the item to retrieve the rollback comments for.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="version" type="xsd:int" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies for which version of the item to return the rollback comments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetSystemXSD">
+				<xsd:annotation>
+					<xsd:documentation>Used to retrieve the serialized form of the specified system schema.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="nameOrNamespaceURI" type="xsd:string" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The schema filename or the namespace uri associated to the specified schema.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetTaxonomies">
+				<xsd:annotation>
+					<xsd:documentation>Used to retrieve taxonomies from a publication</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ConditionFilter" type="tcmapi:ConditionFilter" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>If "UseForNavigation" is specified, only taxonomies are returned that have a root category with the "UseForNavigation" property set to the specified value (true or false). If "Categories" is specified, only taxonomies or part of taxnomies are returned that starting from the specified category.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="publicationURI" type="tcmapi:tcmURI" use="required"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetValidParents">
+				<xsd:annotation>
+					<xsd:documentation>Used to retrieve a list of publications that are valid parents for the specified child publication.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:any namespace="http://www.tridion.com/ContentManager/5.0" processContents="lax"/>
+					</xsd:sequence>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the child publication identifier.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Localize">
+				<xsd:annotation>
+					<xsd:documentation>Used to perform a Localize action on a TCM item.  The item specified must be a shared item.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of the item to localize.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="readItem" type="xsd:boolean" use="optional" default="true"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="LogEvent">
+				<xsd:complexType>
+					<xsd:all>
+						<xsd:element name="Message" type="xsd:string"/>
+					</xsd:all>
+					<xsd:attribute name="severity" use="required">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:enumeration value="Error"/>
+								<xsd:enumeration value="Warning"/>
+								<xsd:enumeration value="Info"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+					<xsd:attribute name="category" use="optional">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:enumeration value="Blueprinting"/>
+								<xsd:enumeration value="Configuration"/>
+								<xsd:enumeration value="Data"/>
+								<xsd:enumeration value="Database"/>
+								<xsd:enumeration value="EventSystem"/>
+								<xsd:enumeration value="FileAccess"/>
+								<xsd:enumeration value="General"/>
+								<xsd:enumeration value="Localization"/>
+								<xsd:enumeration value="Logging"/>
+								<xsd:enumeration value="MultipleOperations"/>
+								<xsd:enumeration value="Profiling"/>
+								<xsd:enumeration value="Publishing"/>
+								<xsd:enumeration value="Rendering"/>
+								<xsd:enumeration value="Search"/>
+								<xsd:enumeration value="Security"/>
+								<xsd:enumeration value="Structure"/>
+								<xsd:enumeration value="System"/>
+								<xsd:enumeration value="Validation"/>
+								<xsd:enumeration value="Versioning"/>
+								<xsd:enumeration value="WhereUsed"/>
+								<xsd:enumeration value="Workflow"/>
+								<xsd:enumeration value="Licensing"/>
+								<xsd:enumeration value="Custom"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+					<xsd:attribute name="source" use="optional">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:enumeration value="Authentication"/>
+								<xsd:enumeration value="Configuration"/>
+								<xsd:enumeration value="Event Handler"/>
+								<xsd:enumeration value="Kernel"/>
+								<xsd:enumeration value="Logging Service"/>
+								<xsd:enumeration value="Protocol Handler"/>
+								<xsd:enumeration value="Publisher Service"/>
+								<xsd:enumeration value="Search Service"/>
+								<xsd:enumeration value="Template"/>
+								<xsd:enumeration value="Workflow Script"/>
+								<xsd:enumeration value="Workflow Service"/>
+								<xsd:enumeration value="Custom"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Paste">
+				<xsd:annotation>
+					<xsd:documentation>Used to perform a Paste action on a TCM item.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of the item to paste.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="contextURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the destination Organizational Item in which the item will be pasted.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="pasteMode" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the type of paste action.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:enumeration value="Copy"/>
+								<xsd:enumeration value="Cut"/>
+								<xsd:enumeration value="0"/>
+								<xsd:enumeration value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+					<xsd:attribute name="makeUnique" type="xsd:boolean" use="optional" default="true">
+						<xsd:annotation>
+							<xsd:documentation>Specifies wheter a new title will be created if a title conflict occurs.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Publish">
+				<xsd:annotation>
+					<xsd:documentation>Used to perform a Publish action on a TCM item.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:any namespace="http://www.tridion.com/ContentManager/5.0" processContents="lax"/>
+					</xsd:sequence>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of the item to be published.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Render">
+				<xsd:annotation>
+					<xsd:documentation>Used to execute a Render (preview) instruction.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="RenderInstruction">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:any namespace="http://www.tridion.com/ContentManager/5.0" processContents="lax"/>
+								</xsd:sequence>
+								<xsd:attribute name="contextURI" type="tcmapi:tcmURI" use="required"/>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="DynamicContent" minOccurs="0">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:any namespace="http://www.tridion.com/ContentManager/5.0" processContents="lax"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required"/>
+					<xsd:attribute name="renderMode" use="required">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:enumeration value="PreviewStatic"/>
+								<xsd:enumeration value="PreviewDynamic"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+					<xsd:attribute name="itemType" type="tcmapi:itemType" use="optional" default="PageTemplate"/>
+					<xsd:attribute name="parentURI" type="tcmapi:tcmURI" use="optional" default="tcm:0-0-0"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="RestartActivity">
+				<xsd:annotation>
+					<xsd:documentation>Used to restart a workflow activity.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of a suspended WorkItem.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Rollback">
+				<xsd:annotation>
+					<xsd:documentation>Used to perform a Rollback action on a TCM item.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of the item to rollback.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="toVersion" type="xsd:int" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the version of the item to rollback to.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="deleteVersions" type="xsd:boolean" use="optional" default="true">
+						<xsd:annotation>
+							<xsd:documentation>Specifies wheter versions created after the version specified in toVersion should be deleted.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="SaveItem">
+				<xsd:annotation>
+					<xsd:documentation>Used to update or create a TCM item via an xml structure conforming to the TCM schema.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:any namespace="http://www.tridion.com/ContentManager/5.0" processContents="lax"/>
+					</xsd:sequence>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of an existing item or URINULL for new items.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="contextURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the Organizational Item where new items will be created.  Existing items may specify URINULL.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="doneEditing" type="xsd:boolean" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Used to check-in or unlock an item after saving changes.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="itemType" type="tcmapi:itemType" use="optional">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the type of Item being created.  Must be used when creating new items.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="readItem" type="xsd:boolean" use="optional" default="true"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Search">
+				<xsd:annotation>
+					<xsd:documentation>Used to execute a search instruction and return a list of search results. This element should contain a valid TCM SearchInstruction.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:any namespace="http://www.tridion.com/ContentManager/5.0" processContents="lax"/>
+					</xsd:sequence>
+					<xsd:attribute name="indexFrom" type="xsd:int" use="optional" default="0"/>
+					<xsd:attribute name="indexTo" type="xsd:int" use="optional" default="0"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="StartActivity">
+				<xsd:annotation>
+					<xsd:documentation>Used to start a workflow activity.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of an assigned WorkItem.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="StopMultipleOperations">
+				<xsd:annotation>
+					<xsd:documentation>Used to cancel a multiple operations action.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the identifier of a multiple operation.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="UndoCheckOut">
+				<xsd:annotation>
+					<xsd:documentation>Used to perform a Undo-CheckOut action on a TCM item.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of the item to undo-check-out.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="permanent" type="xsd:boolean" use="required">
+						<xsd:annotation>
+							<xsd:documentation>Specifies if the lock applied was permanent or temporary.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="readItem" type="xsd:boolean" use="optional" default="true"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="UnLocalize">
+				<xsd:annotation>
+					<xsd:documentation>Used to perform a Un-Localize action on a TCM item.  The item specified must be a localized item.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of the item to unlocalize.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="readItem" type="xsd:boolean" use="optional" default="true"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="UnPublish">
+				<xsd:annotation>
+					<xsd:documentation>Used to perform an Un-Publish action on a TCM item.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:any namespace="http://www.tridion.com/ContentManager/5.0" processContents="lax"/>
+					</xsd:sequence>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of the item to be unpublished.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ValidateSource">
+				<xsd:annotation>
+					<xsd:documentation>Used to validate if the specified XML is a valid Schema.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:any namespace="http://www.tridion.com/ContentManager/5.0" processContents="lax"/>
+					</xsd:sequence>
+					<xsd:attribute name="itemType" type="tcmapi:itemType" use="required"/>
+					<xsd:attribute name="contextURI" type="tcmapi:tcmURI" use="optional" default="tcm:0-0-0"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="SetPermissions">
+				<xsd:complexType>
+					<xsd:all>
+						<xsd:element name="OrganizationalItems">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:any namespace="http://www.tridion.com/ContentManager/5.0" processContents="lax"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Permissions">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:any namespace="http://www.tridion.com/ContentManager/5.0" processContents="lax"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:all>
+					<xsd:attribute name="itemURI" type="xsd:anyURI" use="required"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetSnapshot">
+				<xsd:annotation>
+					<xsd:documentation>Used to retrieve a snapshot from a Workflow Activity.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="itemURI" type="tcmapi:tcmURI" use="required">
+						<xsd:annotation>
+							<xsd:documentation>The identifier of the Activity.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="writeBinaryToDisk" type="xsd:boolean" use="optional" default="false">
+						<xsd:annotation>
+							<xsd:documentation>Specifies wether the binary content should be written to disk.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="binaryPath" type="xsd:string" use="optional">
+						<xsd:annotation>
+							<xsd:documentation>Used in combination with writeBinaryToDisk to specify a location where the binary content should be saved.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetListWFUserProcesses">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ListFilter" type="tcmapi:ListFilter" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Used to describe what data should be returned.  Specifying multiple filters will combine them and returned the exact data they describe.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="ConditionFilter" type="tcmapi:ConditionFilter" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Condition filters are used to constrain the returned data.  In this way it is possible to specify which items should be returned based on a predefined condition.  Refer to the API documentation for details.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:choice>
+		<xsd:attribute name="ID" type="xsd:normalizedString" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Specifies a unique identifier for the request.  The ID is included with the response.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="preserve" type="xsd:boolean" use="optional" default="true">
+			<xsd:annotation>
+				<xsd:documentation>Specifies if the request should be included in the response.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="Response">
+		<xsd:annotation>
+			<xsd:documentation>XMLResponder response for a specific request.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Request" type="tcmapi:Request" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>This element will contain a copy of the Request when the preserve attribute on the Request was set to true.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:choice>
+				<xsd:element name="Error">
+					<xsd:annotation>
+						<xsd:documentation>Contains the error information when the Request failed.</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:any namespace="http://www.tridion.com/ContentManager/5.0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Result">
+					<xsd:annotation>
+						<xsd:documentation>Contains the result of the Request when it succeeded.</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:any namespace="http://www.tridion.com/ContentManager/5.0" minOccurs="0"/>
+							<xsd:element name="ExpandDataField" type="tcmapi:ExpandDataField" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Contains all the Expanded data field requested in the request.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="MultimediaFilename" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>This returns the name of the multimedia file on the server, when the GetItem request is used to get a multimedia component.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="ID" type="xsd:normalizedString" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Specifies the unique identifier used on the request.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="success" type="xsd:boolean" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Specifies if the processed request succeded.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="actionWF" type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>Specifies if the processed requested triggered a workflow process.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+</xsd:schema>

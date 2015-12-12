@@ -1,0 +1,46 @@
+Required dependencies can be automatically collected from a Tridion installation when using the included TcmDependencies.
+
+For example:
+	D:\temp>TcmDependencies.exe
+	[i] Usage: TcmDependencies <destination folder>
+
+	D:\temp>TcmDependencies.exe d:\temp\TcmDebuggerDependencies
+
+	[i] Extracted Tridion.Common.Core from Global Assembly cache.
+	[i] Extracted Tridion.Common from Global Assembly cache.
+	[i] Extracted Tridion.ContentManager.Common from Global Assembly cache.
+	.....
+
+The full list of required dependencies is as follows
+
+	Tridion Dependencies:
+
+		Tridion.Common.Core.dll
+		Tridion.Common.dll
+		Tridion.ContentManager.Common.dll
+		Tridion.ContentManager.CoreService.Client.dll
+		Tridion.ContentManager.CoreService.dll
+		Tridion.ContentManager.Data.AdoNet.dll
+		Tridion.ContentManager.Data.AdoNet.Sql.dll
+		Tridion.ContentManager.Data.dll
+		Tridion.ContentManager.dll
+		Tridion.ContentManager.Interop.cm_bl.dll
+		Tridion.ContentManager.Interop.cm_defines.dll
+		Tridion.ContentManager.Interop.cm_sys.dll
+		Tridion.ContentManager.Interop.cm_tom.dll
+		Tridion.ContentManager.Interop.Licensing.dll
+		Tridion.ContentManager.Localization.dll
+		Tridion.ContentManager.Publishing.dll
+		Tridion.ContentManager.TemplateTypes.dll
+		Tridion.ContentManager.Templating.CompoundTemplates.DomainModel.dll
+		Tridion.ContentManager.Templating.dll
+		Tridion.ContentManager.TypeRegistration.dll
+		Tridion.Logging.dll
+		Tridion.Security.dll
+
+
+	Enterprise Library Dependencies:
+
+		Microsoft.Practices.EnterpriseLibrary.Common.dll
+		Microsoft.Practices.EnterpriseLibrary.Logging.dll
+		Microsoft.Practices.ObjectBuilder.dll

@@ -5,6 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using SDL.TridionVSRazorExtension.Common.Configuration;
+using SDL.TridionVSRazorExtension.Misc;
 
 namespace SDL.TridionVSRazorExtension
 {
@@ -17,7 +19,7 @@ namespace SDL.TridionVSRazorExtension
         {
             get
             {
-                return _Configuration ?? (_Configuration = Functions.GetDefault(this.RootPath));
+                return _Configuration ?? (_Configuration = Service.GetDefault(this.RootPath));
             }
             set
             {
@@ -75,24 +77,24 @@ namespace SDL.TridionVSRazorExtension
             this.CurrentMapping.Password = this.txtPassword.Password;
             this.CurrentMapping.TimeZoneId = (this.cbTimeZone.SelectedValue as TimeZoneInfo ?? TimeZoneInfo.Local).Id;
 
-            Functions.SaveConfiguration(this.RootPath, "TridionRazorMapping.xml", this.Configuration);
+            MainService.SaveConfiguration(this.RootPath, "TridionRazorMapping.xml", this.Configuration);
         }
 
         public MappingWindow()
         {
             InitializeComponent();
-            Functions.CredentialsChanged += CredentialsChanged;
+            MainService.CredentialsChanged += CredentialsChanged;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Functions.TxtLog = this.txtLog;
-            Functions.RootPath = this.RootPath;
+            MainService.TxtLog = this.txtLog;
+            MainService.RootPath = this.RootPath;
 
             //get configuration from xml
             try
             {
-                this.Configuration = Functions.GetConfiguration(this.RootPath, "TridionRazorMapping.xml");
+                this.Configuration = Service.GetConfiguration(this.RootPath, "TridionRazorMapping.xml");
             }
             catch (Exception)
             {
@@ -112,7 +114,7 @@ namespace SDL.TridionVSRazorExtension
 
         private void btnNew_Click(object sender, RoutedEventArgs e)
         {
-            this.Configuration.Add(Functions.GetDefaultMapping(this.RootPath, "(new mapping)"));
+            this.Configuration.Add(Service.GetDefaultMapping(this.RootPath, "(new mapping)"));
             this.ReloadMappings("(new mapping)");
             this.ReloadForm();
         }
@@ -138,9 +140,9 @@ namespace SDL.TridionVSRazorExtension
             
             this.ReloadForm();
 
-            Functions.ResetClient();
-            Functions.ResetDownloadClient();
-            Functions.ResetUploadClient();
+            MainService.ResetClient();
+            MainService.ResetDownloadClient();
+            MainService.ResetUploadClient();
         }
 
         private void DataGridTridionMapping_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -192,11 +194,12 @@ namespace SDL.TridionVSRazorExtension
                 ProjectFolderInfo projectFolder = grid.SelectedItem as ProjectFolderInfo;
                 if (projectFolder != null)
                 {
-                    Functions.CreateVSFolder(projectFolder.FullPath);
+                    MainService.CreateVSFolder(projectFolder.FullPath);
                     
                     ProjectFolderDialogWindow dialog = new ProjectFolderDialogWindow();
                     dialog.RootPath = this.RootPath;
                     dialog.CurrentProjectFolder = projectFolder;
+                    dialog.CurrentMapping = this.CurrentMapping;
                     dialog.TridionFolders = this.CurrentMapping.TridionFolders.FillNamedPath(this.CurrentMapping);
                     bool res = dialog.ShowDialog() == true;
                     if (res)
@@ -212,6 +215,7 @@ namespace SDL.TridionVSRazorExtension
             ProjectFolderDialogWindow dialog = new ProjectFolderDialogWindow();
             dialog.RootPath = this.RootPath;
             dialog.CurrentProjectFolder = new ProjectFolderInfo { RootPath = this.RootPath, Path = "", Checked = false };
+            dialog.CurrentMapping = this.CurrentMapping;
             dialog.TridionFolders = this.CurrentMapping.TridionFolders.FillNamedPath(this.CurrentMapping);
             bool res = dialog.ShowDialog() == true;
             if (res)
@@ -254,15 +258,13 @@ namespace SDL.TridionVSRazorExtension
             //run current
             foreach (ProjectFolderInfo folder in this.CurrentMapping.ProjectFolders)
             {
-                Functions.ProcessFolder(this.CurrentMapping, folder);
+                MainService.ProcessFolder(this.CurrentMapping, folder);
             }
 
             foreach (TridionFolderInfo tridionFolder in this.CurrentMapping.TridionFolders)
             {
-                Functions.ProcessTridionFolder(this.CurrentMapping, tridionFolder);
+                MainService.ProcessTridionFolder(this.CurrentMapping, tridionFolder);
             }
-
-            Functions.CheckRazorWebConfig(this.CurrentMapping);
 
             this.SaveConfiguration();
 
@@ -277,7 +279,7 @@ namespace SDL.TridionVSRazorExtension
 
         private void btnTestConnection_Click(object sender, RoutedEventArgs e)
         {
-            if (Functions.TestConnection(this.CurrentMapping) && Functions.EnsureValidClient(this.CurrentMapping))
+            if (MainService.TestConnection(this.CurrentMapping) && MainService.EnsureValidClient(this.CurrentMapping))
             {
                 this.CurrentMapping.Valid = true;
                 this.btnSaveRun.IsEnabled = true;

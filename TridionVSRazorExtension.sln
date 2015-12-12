@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TridionVSRazorExtension", "TridionVSRazorExtension\TridionVSRazorExtension.csproj", "{B12A772B-EB90-49DB-9603-AFB9E4EDD9F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcmDebugger", "TcmDebugger\TcmDebugger.csproj", "{8AA8C50A-B392-44EE-A279-3439A442D133}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMediatorLayouts", "RazorMediatorLayouts\RazorMediatorLayouts.csproj", "{5A113FA1-DB4F-4FFF-A5A6-1C0CCDAD2C27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TridionVSRazorExtension.Common", "TridionVSRazorExtension.Common\TridionVSRazorExtension.Common.csproj", "{E4381E87-10CD-464A-95A3-ACB7461534F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{B12A772B-EB90-49DB-9603-AFB9E4EDD9F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B12A772B-EB90-49DB-9603-AFB9E4EDD9F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B12A772B-EB90-49DB-9603-AFB9E4EDD9F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AA8C50A-B392-44EE-A279-3439A442D133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AA8C50A-B392-44EE-A279-3439A442D133}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AA8C50A-B392-44EE-A279-3439A442D133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AA8C50A-B392-44EE-A279-3439A442D133}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A113FA1-DB4F-4FFF-A5A6-1C0CCDAD2C27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A113FA1-DB4F-4FFF-A5A6-1C0CCDAD2C27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A113FA1-DB4F-4FFF-A5A6-1C0CCDAD2C27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A113FA1-DB4F-4FFF-A5A6-1C0CCDAD2C27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4381E87-10CD-464A-95A3-ACB7461534F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4381E87-10CD-464A-95A3-ACB7461534F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4381E87-10CD-464A-95A3-ACB7461534F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4381E87-10CD-464A-95A3-ACB7461534F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

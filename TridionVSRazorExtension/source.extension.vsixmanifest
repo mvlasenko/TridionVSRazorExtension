@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="TridionVSRazorExtension_3.0" Version="3.0" Language="en-US" Publisher="Mark Vlasenko" />
+    <Identity Id="TridionVSRazorExtension_3.1" Version="3.1" Language="en-US" Publisher="Mark Vlasenko" />
     <DisplayName>TridionVSRazorExtension</DisplayName>
     <Description xml:space="preserve">Edit and sync Tridion Razor Mediator files in Visual Studio 2015</Description>
   </Metadata>

@@ -1,0 +1,94 @@
+@inherits SDL.RazorMediatorLayouts.WrappedTridionRazorTemplate
+
+<!-- Heading -->
+<article>
+    <h2>@Fields.Heading.Headline</h2>
+    <h3>@Fields.Heading.SubHeadline</h3>
+    <p>@Fields.Heading.Description</p>
+    @if (Fields.Heading.CTA != null)
+    {
+        if (Fields.Heading.CTA.External != null)
+        {
+            <a href="@Fields.Heading.CTA.External" target="@Fields.Heading.CTA.Target" class="green-btn">@Fields.Heading.CTA.Title </a>
+        }
+        if (Fields.Heading.CTA.Component != null)
+        {
+            <a tridion:href="@Fields.Heading.CTA.Component" target="@Fields.Heading.CTA.Target" class="green-btn">@Fields.Heading.CTA.Title </a>
+        }
+    }
+</article>
+<!-- End Heading -->
+<!-- Body -->
+@foreach (var body in Fields.Body)
+{
+    <article>
+        @if (body.Headline != null)
+        {
+            <em>@body.Headline</em>
+        }
+        @if (body.SubHeadline != null)
+        {
+            <p><strong>@body.SubHeadline</strong></p>
+        }
+        @if (body.Image != null)
+        {
+            <div><img class="left" src="@body.Image"></div>
+        }
+        @if (body.List != null)
+        {
+            <ul>
+                @foreach (var libody in body.List)
+                {
+                    <li>@libody</li>
+                }
+            </ul>
+        }
+        @if (body.CTA != null)
+        {
+            if (body.CTA.External != null)
+            {
+                <a href="@body.CTA.External" target="@body.CTA.Target">@body.CTA.Title </a>
+            }
+            if (body.CTA.Component != null)
+            {
+                <a tridion:href="@body.CTA.Component" target="@body.CTA.Target">@body.CTA.Title </a>
+            }
+        }
+        <!-- Paragraphs -->
+        @if (body.Paragraph != null)
+        {
+            foreach (var paragraph in body.Paragraph)
+            {
+                if (paragraph.Title != null)
+                {
+                    <em>@paragraph.Title</em>
+                }
+                if (paragraph.Body != null)
+                {
+                    <p>@paragraph.Body</p>
+                }
+                if (paragraph.Image != null)
+                {
+                    <div><img class="left" src="@paragraph.Image"></div>
+                }
+                if (paragraph.Link != null)
+                {
+                    if (paragraph.Link.External != null)
+                    {
+                        <a href="@paragraph.Link.External" target="@paragraph.Link.Target">@paragraph.Link.Title </a>
+                    }
+                    if (paragraph.Link.Component != null)
+                    {
+                        <a href="@paragraph.Link.Component" target="@paragraph.Link.Target">@paragraph.Link.Title </a>
+                    }
+                }
+            }
+        }
+        <!-- End of Paragraphs -->
+        @if (body.Note != null)
+        {
+            <i>@body.Note</i>
+        }
+    </article>
+}
+<!-- End of Body -->

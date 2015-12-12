@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Tridion.ContentManager.CoreService.Client;
+using SDL.TridionVSRazorExtension.Common.Configuration;
+using SDL.TridionVSRazorExtension.Common.Misc;
+using SDL.TridionVSRazorExtension.Misc;
+using SDL.TridionVSRazorExtension.Tridion;
 
 namespace SDL.TridionVSRazorExtension
 {
@@ -20,7 +23,7 @@ namespace SDL.TridionVSRazorExtension
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.treeTridionFolder.ItemsSource = Functions.GetPublications(this.CurrentMapping).Expand(this.CurrentMapping, this.TridionSelectorMode, this.TridionFolder.TcmIdPath, this.TridionFolder.TcmId).MakeExpandable();
+            this.treeTridionFolder.ItemsSource = MainService.GetPublications(this.CurrentMapping).Expand(this.CurrentMapping, this.TridionSelectorMode, this.TridionFolder.TcmIdPath, this.TridionFolder.TcmId).MakeExpandable();
 
             this.TridionFolder.FillNamedPath(this.CurrentMapping);
             this.txtPath.Text = this.TridionFolder.NamedPath;
@@ -48,35 +51,7 @@ namespace SDL.TridionVSRazorExtension
             if (item == null)
                 return;
 
-            if (item.ChildItems != null && item.ChildItems.All(x => x.Title != "Loading..."))
-                return;
-
-            if (String.IsNullOrEmpty(item.TcmId))
-                return;
-
-            if (item.ItemType == ItemType.Publication)
-            {
-                if (this.TridionSelectorMode == TridionSelectorMode.Folder)
-                {
-                    item.ChildItems = Functions.GetFoldersByPublication(this.CurrentMapping, item.TcmId).MakeExpandable().SetParent(item);
-                }
-                if (this.TridionSelectorMode == TridionSelectorMode.StructureGroup)
-                {
-                    item.ChildItems = Functions.GetStructureGroupsByPublication(this.CurrentMapping, item.TcmId).MakeExpandable().SetParent(item);
-                }
-                if (this.TridionSelectorMode == TridionSelectorMode.FolderAndStructureGroup)
-                {
-                    item.ChildItems = Functions.GetFoldersAndStructureGroupsByPublication(this.CurrentMapping, item.TcmId).MakeExpandable().SetParent(item);
-                }
-            }
-            if (item.ItemType == ItemType.Folder)
-            {
-                item.ChildItems = Functions.GetFoldersByParentFolder(this.CurrentMapping, item.TcmId).MakeExpandable().SetParent(item);
-            }
-            if (item.ItemType == ItemType.StructureGroup)
-            {
-                item.ChildItems = Functions.GetStructureGroupsByParentStructureGroup(this.CurrentMapping, item.TcmId).MakeExpandable().SetParent(item);
-            }
+            MainService.OnItemExpanded(item, this.CurrentMapping, this.TridionSelectorMode);
         }
 
         private void TreeViewItem_Selected(object sender, RoutedEventArgs e)
@@ -88,7 +63,7 @@ namespace SDL.TridionVSRazorExtension
             this.TridionFolder.TcmId = item.TcmId;
 
             List<ItemInfo> list = new List<ItemInfo>();
-            this.AddPathItem(list, item);
+            MainService.AddPathItem(list, item);
             
             this.TridionFolder.TcmIdPath = list.Select(x => x.TcmId).ToList();
             list.Reverse();
@@ -104,7 +79,7 @@ namespace SDL.TridionVSRazorExtension
 
             this.TridionFolder.TridionRole = (TridionRole)this.cbRoles.SelectedValue;
             this.TridionSelectorMode = TridionSelectorMode.Folder;
-            this.treeTridionFolder.ItemsSource = Functions.GetPublications(this.CurrentMapping).Expand(this.CurrentMapping, this.TridionSelectorMode, this.TridionFolder.TcmIdPath, this.TridionFolder.TcmId).MakeExpandable();
+            this.treeTridionFolder.ItemsSource = MainService.GetPublications(this.CurrentMapping).Expand(this.CurrentMapping, this.TridionSelectorMode, this.TridionFolder.TcmIdPath, this.TridionFolder.TcmId).MakeExpandable();
         }
 
         private void chkScanForItems_OnClick(object sender, RoutedEventArgs e)
@@ -112,15 +87,5 @@ namespace SDL.TridionVSRazorExtension
             this.TridionFolder.ScanForItems = this.chkScanForItems.IsChecked == true;
         }
 
-        private void AddPathItem(List<ItemInfo> list, ItemInfo item)
-        {
-            if (item == null)
-                return;
-
-            list.Add(item);
-
-            if (item.Parent != null)
-                this.AddPathItem(list, item.Parent);
-        }
     }
 }

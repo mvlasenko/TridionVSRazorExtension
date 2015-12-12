@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using SDL.TridionVSRazorExtension.Misc;
 
 namespace SDL.TridionVSRazorExtension
 {
@@ -22,7 +23,7 @@ namespace SDL.TridionVSRazorExtension
             this.lblStartItem.Content = StartItemInfo;
             this.lblEndItem.Content = EndItemInfo;
 
-            string html = "<div style='font-size: 11px; font-family: Verdana; white-space:nowrap;'>" + Functions.GetDiffHtml(StartItemText, EndItemText).Replace("&para;", "") + "</div>";
+            string html = "<div style='font-size: 11px; font-family: Verdana; white-space:nowrap;'>" + MainService.GetDiffHtml(StartItemText, EndItemText).Replace("&para;", "") + "</div>";
 
             this.webBrowser1.NavigateToString(html);
 

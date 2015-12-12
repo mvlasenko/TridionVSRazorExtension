@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Linq;
+using SDL.TridionVSRazorExtension.Common.Configuration;
+using SDL.TridionVSRazorExtension.Tridion;
 
 namespace SDL.TridionVSRazorExtension
 {
@@ -37,7 +39,7 @@ namespace SDL.TridionVSRazorExtension
 
         private void LoadPublications()
         {
-            List<ItemInfo> publications = String.IsNullOrEmpty(this.FilterItemTcmId) ? Functions.GetPublications(this.Mapping) : Functions.GetPublications(this.Mapping, this.FilterItemTcmId);
+            List<ItemInfo> publications = String.IsNullOrEmpty(this.FilterItemTcmId) ? MainService.GetPublications(this.Mapping) : MainService.GetPublications(this.Mapping, this.FilterItemTcmId);
             this.cbPublication.ItemsSource = publications;
             this.cbPublication.DisplayMemberPath = "Title";
 
