@@ -2399,7 +2399,7 @@ namespace SDL.TridionVSRazorExtension
 
         public static void ProcessTridionItem(MappingInfo mapping, ItemInfo item, TridionFolderInfo folder)
         {
-            //todo: nested path
+            //todo: nested folders?
 
             if (item == null || folder == null)
                 return;
@@ -2418,28 +2418,71 @@ namespace SDL.TridionVSRazorExtension
 
                 ShowMessage(item.Title + "...");
 
-                ProjectDestinationDialogWindow dialog = new ProjectDestinationDialogWindow();
-                dialog.Mapping = mapping;
-                dialog.TridionRole = folder.TridionRole;
-                dialog.TridionTcmId = item.TcmId;
-                dialog.TridionTitle = item.Title;
-                dialog.TridionContent = tridionItem.Content;
-
-                bool res = dialog.ShowDialog() == true;
-                if (res)
+                if (Common.IsolatedStorage.Service.GetFromIsolatedStorage(Common.IsolatedStorage.Service.GetId(mapping.Host, "ProjectDestination_Skip")) == "true")
                 {
-                    ProjectFolderInfo projectFolder = dialog.ProjectFolder;
-                    ProjectFileInfo projectFile = dialog.ProjectFile;
+                    //skip checkbox is pressed
 
-                    if (projectFolder != null && projectFile != null)
+                    ProjectFolderInfo projectFolder = null;
+                    if (folder.TridionRole == TridionRole.PageLayoutContainer)
                     {
-                        string path = projectFile.FullPath;
-                        DateTime tridionDate = (DateTime) tridionItem.VersionInfo.RevisionDate;
-                        DateTime tridionLocalDate = tridionDate.GetLocalTime(mapping.TimeZoneId);
-                        SaveVSItem(path, tridionItem.Content);
-                        File.SetAttributes(path, FileAttributes.Normal);
-                        File.SetLastWriteTime(path, tridionLocalDate);
-                        WriteSuccessLog(path + " - Saved to Visual Studio");
+                        projectFolder = mapping.ProjectFolders.FirstOrDefault(x => x.ProjectFolderRole == ProjectFolderRole.PageLayout);
+                    }
+                    if (folder.TridionRole == TridionRole.ComponentLayoutContainer)
+                    {
+                        projectFolder = mapping.ProjectFolders.FirstOrDefault(x => x.ProjectFolderRole == ProjectFolderRole.ComponentLayout);
+                    }
+                    if (projectFolder == null)
+                        projectFolder = new ProjectFolderInfo();
+
+                    if (projectFolder.ChildItems == null)
+                        projectFolder.ChildItems = new List<ProjectItemInfo>();
+
+                    string path = Path.Combine(projectFolder.Path, item.Title.Replace(".cshtml", "") + ".cshtml");
+
+                    ProjectFileInfo projectFile = projectFolder.ChildItems.OfType<ProjectFileInfo>().FirstOrDefault(x => x.Path == path) ?? new ProjectFileInfo();
+                    projectFile.Parent = projectFolder;
+                    projectFile.RootPath = projectFolder.RootPath;
+                    projectFile.Path = path;
+                    projectFile.TcmId = item.TcmId;
+                    projectFile.Checked = true;
+
+                    if (projectFolder.ChildItems.OfType<ProjectFileInfo>().All(x => x.Path != path))
+                    {
+                        projectFolder.ChildItems.Add(projectFile);
+                    }
+
+                    DateTime tridionDate = (DateTime)tridionItem.VersionInfo.RevisionDate;
+                    DateTime tridionLocalDate = tridionDate.GetLocalTime(mapping.TimeZoneId);
+                    SaveVSItem(path, tridionItem.Content);
+                    File.SetAttributes(path, FileAttributes.Normal);
+                    File.SetLastWriteTime(path, tridionLocalDate);
+                    WriteSuccessLog(path + " - Saved to Visual Studio");
+                }
+                else
+                {
+                    ProjectDestinationDialogWindow dialog = new ProjectDestinationDialogWindow();
+                    dialog.Mapping = mapping;
+                    dialog.TridionRole = folder.TridionRole;
+                    dialog.TridionTcmId = item.TcmId;
+                    dialog.TridionTitle = item.Title;
+                    dialog.TridionContent = tridionItem.Content;
+
+                    bool res = dialog.ShowDialog() == true;
+                    if (res)
+                    {
+                        ProjectFolderInfo projectFolder = dialog.ProjectFolder;
+                        ProjectFileInfo projectFile = dialog.ProjectFile;
+
+                        if (projectFolder != null && projectFile != null)
+                        {
+                            string path = projectFile.FullPath;
+                            DateTime tridionDate = (DateTime)tridionItem.VersionInfo.RevisionDate;
+                            DateTime tridionLocalDate = tridionDate.GetLocalTime(mapping.TimeZoneId);
+                            SaveVSItem(path, tridionItem.Content);
+                            File.SetAttributes(path, FileAttributes.Normal);
+                            File.SetLastWriteTime(path, tridionLocalDate);
+                            WriteSuccessLog(path + " - Saved to Visual Studio");
+                        }
                     }
                 }
 
@@ -2454,26 +2497,56 @@ namespace SDL.TridionVSRazorExtension
 
                 ShowMessage(item.Title + "...");
 
-                ProjectBinaryDestinationDialogWindow dialog = new ProjectBinaryDestinationDialogWindow();
-                dialog.Mapping = mapping;
-                dialog.TridionTcmId = item.TcmId;
-                dialog.TridionTitle = item.Title;
-
-                bool res = dialog.ShowDialog() == true;
-                if (res)
+                if (Common.IsolatedStorage.Service.GetFromIsolatedStorage(Common.IsolatedStorage.Service.GetId(mapping.Host, "ProjectDestination_Skip")) == "true")
                 {
-                    ProjectFolderInfo projectFolder = dialog.ProjectFolder;
-                    ProjectFileInfo projectFile = dialog.ProjectFile;
+                    ProjectFolderInfo projectFolder = mapping.ProjectFolders.FirstOrDefault(x => x.ProjectFolderRole == ProjectFolderRole.Binary) ?? new ProjectFolderInfo();
+                    if (projectFolder.ChildItems == null)
+                        projectFolder.ChildItems = new List<ProjectItemInfo>();
 
-                    if (projectFolder != null && projectFile != null)
+                    string path = Path.Combine(projectFolder.Path, item.Title);
+
+                    ProjectFileInfo projectFile = projectFolder.ChildItems.OfType<ProjectFileInfo>().FirstOrDefault(x => x.Path == path) ?? new ProjectFileInfo();
+                    projectFile.Parent = projectFolder;
+                    projectFile.RootPath = projectFolder.RootPath;
+                    projectFile.Path = path;
+                    projectFile.TcmId = item.TcmId;
+                    projectFile.Checked = true;
+
+                    if (projectFolder.ChildItems.OfType<ProjectFileInfo>().All(x => x.Path != path))
                     {
-                        string path = projectFile.FullPath;
-                        DateTime tridionDate = (DateTime)tridionItem.VersionInfo.RevisionDate;
-                        DateTime tridionLocalDate = tridionDate.GetLocalTime(mapping.TimeZoneId);
-                        SaveVSBinaryItem(mapping, projectFile.TcmId, path);
-                        File.SetAttributes(path, FileAttributes.Normal);
-                        File.SetLastWriteTime(path, tridionLocalDate);
-                        WriteSuccessLog(path + " - Saved to Visual Studio successfully");
+                        projectFolder.ChildItems.Add(projectFile);
+                    }
+
+                    DateTime tridionDate = (DateTime)tridionItem.VersionInfo.RevisionDate;
+                    DateTime tridionLocalDate = tridionDate.GetLocalTime(mapping.TimeZoneId);
+                    SaveVSItem(path, tridionItem.Content);
+                    File.SetAttributes(path, FileAttributes.Normal);
+                    File.SetLastWriteTime(path, tridionLocalDate);
+                    WriteSuccessLog(path + " - Saved to Visual Studio");
+                }
+                else
+                {
+                    ProjectBinaryDestinationDialogWindow dialog = new ProjectBinaryDestinationDialogWindow();
+                    dialog.Mapping = mapping;
+                    dialog.TridionTcmId = item.TcmId;
+                    dialog.TridionTitle = item.Title;
+
+                    bool res = dialog.ShowDialog() == true;
+                    if (res)
+                    {
+                        ProjectFolderInfo projectFolder = dialog.ProjectFolder;
+                        ProjectFileInfo projectFile = dialog.ProjectFile;
+
+                        if (projectFolder != null && projectFile != null)
+                        {
+                            string path = projectFile.FullPath;
+                            DateTime tridionDate = (DateTime)tridionItem.VersionInfo.RevisionDate;
+                            DateTime tridionLocalDate = tridionDate.GetLocalTime(mapping.TimeZoneId);
+                            SaveVSBinaryItem(mapping, projectFile.TcmId, path);
+                            File.SetAttributes(path, FileAttributes.Normal);
+                            File.SetLastWriteTime(path, tridionLocalDate);
+                            WriteSuccessLog(path + " - Saved to Visual Studio successfully");
+                        }
                     }
                 }
 
@@ -2802,17 +2875,6 @@ namespace SDL.TridionVSRazorExtension
             SaveConfiguration(rootPath, "TridionRazorMapping.xml", configuration);
 
             MessageBox.Show("Synchronization finished", "Finish", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        private static string GetRootPath(List<string> paths, string currPath)
-        {
-            if (paths == null)
-                return currPath;
-
-            if (paths.All(path => path.StartsWith(currPath)))
-                return currPath;
-
-            return GetRootPath(paths, Path.GetDirectoryName(currPath));
         }
 
         #endregion
@@ -3199,15 +3261,34 @@ namespace SDL.TridionVSRazorExtension
             ProjectFileInfo file = files[0];
             file.Parent = folders[0];
 
-            //todo: check if file.Parent is neede
-            //todo: schow dialog if Test ids are empty
+            if (string.IsNullOrEmpty(file.TestItemTcmId) || string.IsNullOrEmpty(file.TestTemplateTcmId))
+            {
+                SelectTridionDebugDialogWindow dialog = new SelectTridionDebugDialogWindow();
+                dialog.TbbTcmId = file.TcmId;
+                dialog.TestItemTcmId = file.TestItemTcmId;
+                dialog.TestTemplateTcmId = file.TestTemplateTcmId;
+                dialog.CurrentMapping = mapping;
+
+                bool res = dialog.ShowDialog() == true;
+                if (!res)
+                {
+                    return;
+                }
+
+                file.TestItemTcmId = dialog.TestItemTcmId;
+                file.TestTemplateTcmId = dialog.TestTemplateTcmId;
+            }
 
             string fileName = Path.GetFileNameWithoutExtension(filePath);
             string testItem = file.TestItemTcmId.Replace("tcm:", "");
             string testTemplate = file.TestTemplateTcmId.Replace("tcm:", "");
 
+            //set start .cshtml
             string baseUrl = project.Properties.Item("WebApplication.BrowseURL").Value.ToString().TrimEnd('/');
-            project.Properties.Item("WebApplication.StartPageUrl").Value = baseUrl + "/"+ fileName + "/"+ testItem + "/" + testTemplate;
+            project.Properties.Item("WebApplication.StartExternalURL").Value = baseUrl + "/"+ fileName + "/"+ testItem + "/" + testTemplate;
+
+            //set start project
+            solution.Properties.Item("StartupProject").Value = project.Name;
 
             //run debugger
             SolutionBuild sb = solution.SolutionBuild;

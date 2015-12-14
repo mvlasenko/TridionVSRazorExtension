@@ -106,7 +106,7 @@
     <Bitmaps>
       <Bitmap guid="guidImages" href="Resources\tridion.png" usedList="bmpTridion" />
       <Bitmap guid="guidImagesDelete" href="Resources\delete.png" usedList="bmpDelete" />
-      <Bitmap guid="guidImagesDebug" href="Resources\delete.png" usedList="bmpDebug" />
+      <Bitmap guid="guidImagesDebug" href="Resources\debug.png" usedList="bmpDebug" />
     </Bitmaps>
   
   </Commands>

@@ -37,6 +37,8 @@
             <StackPanel Orientation="Horizontal" Height="30" Margin="12,4,0,0" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3">
                 <Button Content="Ok" Height="23" Name="btnOk" Width="75" Margin="6,0,0,0" Click="btnOk_Click" IsDefault="True" />
                 <Button Content="Cancel" Height="23" Name="btnCancel" Width="75" Margin="10,0,0,0" Click="btnCancel_Click" IsCancel="True" />
+
+                <CheckBox Content="Skip this dialog" Height="16" Name="chkSkip" Margin="30,6,6,6" IsThreeState="False" />
             </StackPanel>
 
         </Grid>

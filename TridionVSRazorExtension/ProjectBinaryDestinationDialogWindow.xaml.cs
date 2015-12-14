@@ -55,6 +55,11 @@ namespace SDL.TridionVSRazorExtension
         {
             this.SaveResult();
 
+            if (this.chkChecked.IsChecked == true)
+            {
+                Common.IsolatedStorage.Service.SaveToIsolatedStorage(Common.IsolatedStorage.Service.GetId(Mapping.Host, "ProjectDestination_Skip"), "true");
+            }
+
             this.DialogResult = true;
             this.Close();
         }

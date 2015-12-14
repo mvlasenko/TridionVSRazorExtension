@@ -461,6 +461,8 @@ namespace SDL.TridionVSRazorExtension.Common.Configuration
 
         public static List<ProjectFolderInfo> GetFolders(this MappingInfo mapping, string filePath)
         {
+            //todo: research nested folders
+
             List<ProjectFolderInfo> res = new List<ProjectFolderInfo>();
 
             if (mapping == null)

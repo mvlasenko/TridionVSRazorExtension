@@ -131,6 +131,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Views\ComponentLayouts\Annual Event Detail TBB.cshtml" />
+    <Content Include="Views\Shared\MappingError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />

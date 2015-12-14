@@ -18,22 +18,19 @@ namespace SDL.RazorMediatorLayouts.Controllers
 
             Configuration configuration = Service.GetConfiguration(rootPath, "TridionRazorMapping.xml");
             if(configuration == null)
-                return null;
+                return View("~/Views/Shared/MappingError.cshtml");
 
             MappingInfo mapping = configuration.FirstOrDefault(x => x.Name == (configuration.DefaultConfiguration ?? "Default"));
             if (mapping == null)
-                return null;
+                return View("~/Views/Shared/MappingError.cshtml");
 
             ProjectFolderInfo componentLayouts = mapping.ProjectFolders.FirstOrDefault(x => x.ProjectFolderRole == ProjectFolderRole.ComponentLayout);
             if (componentLayouts == null)
-                return null;
+                return View("~/Views/Shared/MappingError.cshtml");
 
             ProjectFileInfo fileInfo = componentLayouts.ChildItems.FirstOrDefault(x => x.Path == "Views\\ComponentLayouts\\" + file + ".cshtml") as ProjectFileInfo;
             if (fileInfo == null)
-            {
-                //todo: in-browser error message
-                return null;
-            }
+                return View("~/Views/Shared/MappingError.cshtml");
 
             return GetView(fileInfo.TestItemTcmId, fileInfo.TestTemplateTcmId, "~/Views/ComponentLayouts/" + file + ".cshtml");
         }
@@ -45,22 +42,21 @@ namespace SDL.RazorMediatorLayouts.Controllers
 
             Configuration configuration = Service.GetConfiguration(rootPath, "TridionRazorMapping.xml");
             if (configuration == null)
-                return null;
+                return View("~/Views/Shared/MappingError.cshtml");
 
             MappingInfo mapping = configuration.FirstOrDefault(x => x.Name == (configuration.DefaultConfiguration ?? "Default"));
             if (mapping == null)
-                return null;
+                return View("~/Views/Shared/MappingError.cshtml");
 
             ProjectFolderInfo PageLayouts = mapping.ProjectFolders.FirstOrDefault(x => x.ProjectFolderRole == ProjectFolderRole.PageLayout);
             if (PageLayouts == null)
-                return null;
+                return View("~/Views/Shared/MappingError.cshtml");
 
             ProjectFileInfo fileInfo = PageLayouts.ChildItems.FirstOrDefault(x => x.Path == "Views\\PageLayouts\\" + file + ".cshtml") as ProjectFileInfo;
             if (fileInfo == null)
-                return null;
+                return View("~/Views/Shared/MappingError.cshtml");
 
             return GetView(fileInfo.TestItemTcmId, fileInfo.TestTemplateTcmId, "~/Views/PageLayouts/" + file + ".cshtml");
-
         }
 
         //http://localhost/FileName/4042-29578/5057-30730-32
