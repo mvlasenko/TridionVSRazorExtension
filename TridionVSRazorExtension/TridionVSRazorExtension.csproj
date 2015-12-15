@@ -141,10 +141,6 @@
     <Resource Include="Resources\xls.png" />
     <None Include="Key.snk" />
     <None Include="packages.config" />
-    <Content Include="ProjectTemplates\Tridion Razor Mediator.zip">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>

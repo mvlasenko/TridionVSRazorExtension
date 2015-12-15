@@ -7,7 +7,7 @@ using TcmDebugger.Engines;
 using TcmDebugger.Service;
 using Tridion.ContentManager;
 
-namespace SDL.RazorMediatorLayouts.Controllers
+namespace SDL.TestRazorMediatorLayouts.Controllers
 {
     public class DefaultController : Controller
     {

@@ -7,9 +7,9 @@ using Tridion.ContentManager.Templating;
 using Tridion.Extensions.Mediators.Razor;
 using Tridion.Extensions.Mediators.Razor.Models;
 using Tridion.Extensions.Mediators.Razor.Utilities;
-using SDL.RazorMediatorLayouts.Controllers;
+using SDL.TestRazorMediatorLayouts.Controllers;
 
-namespace SDL.RazorMediatorLayouts
+namespace SDL.TestRazorMediatorLayouts
 {
     public class WrappedTridionRazorTemplate : WebViewPage
     {
