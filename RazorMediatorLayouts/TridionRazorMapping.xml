@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfMappingInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <MappingInfo Name="Default" Host="localhost">
+    <TridionFolders>
+      <TridionFolderInfo>
+        <TcmId />
+        <TcmIdPath />
+        <TridionRole>PageLayoutContainer</TridionRole>
+        <ScanForItems>true</ScanForItems>
+        <NamedPath />
+      </TridionFolderInfo>
+      <TridionFolderInfo>
+        <TcmId />
+        <TcmIdPath />
+        <TridionRole>ComponentLayoutContainer</TridionRole>
+        <ScanForItems>true</ScanForItems>
+        <NamedPath />
+      </TridionFolderInfo>
+      <TridionFolderInfo>
+        <TcmId />
+        <TcmIdPath />
+        <TridionRole>PageTemplateContainer</TridionRole>
+        <ScanForItems>false</ScanForItems>
+        <NamedPath />
+      </TridionFolderInfo>
+      <TridionFolderInfo>
+        <TcmId />
+        <TcmIdPath />
+        <TridionRole>ComponentTemplateContainer</TridionRole>
+        <ScanForItems>false</ScanForItems>
+        <NamedPath />
+      </TridionFolderInfo>
+    </TridionFolders>
+    <ProjectFolders>
+      <ProjectFolderInfo Path="Views\PageLayouts" Checked="True" SyncTemplate="True" TemplateFormat="&lt;CompoundTemplate xmlns=&quot;http://www.tridion.com/ContentManager/5.3/CompoundTemplate&quot;&gt;&lt;TemplateInvocation&gt;&lt;Template xlink:href=&quot;{0}&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; xlink:title=&quot;{1}&quot; /&gt;&lt;TemplateParameters&gt;&lt;/TemplateParameters&gt;&lt;/TemplateInvocation&gt;&lt;/CompoundTemplate&gt;" ProjectFolderRole="PageLayout" />
+      <ProjectFolderInfo Path="Views\ComponentLayouts" Checked="True" SyncTemplate="True" TemplateFormat="&lt;CompoundTemplate xmlns=&quot;http://www.tridion.com/ContentManager/5.3/CompoundTemplate&quot;&gt;&lt;TemplateInvocation&gt;&lt;Template xlink:href=&quot;{0}&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; xlink:title=&quot;{1}&quot; /&gt;&lt;TemplateParameters&gt;&lt;/TemplateParameters&gt;&lt;/TemplateInvocation&gt;&lt;/CompoundTemplate&gt;" ProjectFolderRole="ComponentLayout" />
+    </ProjectFolders>
+  </MappingInfo>
+</ArrayOfMappingInfo>

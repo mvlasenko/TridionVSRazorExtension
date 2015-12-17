@@ -40,55 +40,57 @@ namespace TcmDebugger.Misc
 			// Synchronize access to the console log
 			lock (mLock)
 			{
-				// Do not log above the configured log level
-				if (logType > DebuggerConfig.Instance.Logging.Level)
-					return;
+                //todo: implement other logging
 
-				String outputType;
+				//// Do not log above the configured log level
+				//if (logType > DebuggerConfig.Instance.Logging.Level)
+				//	return;
 
-				switch (logType)
-				{
-					case TraceEventType.Critical:
-						Console.ForegroundColor = ConsoleColor.DarkRed;
-						outputType = "!";
-						break;
-					case TraceEventType.Error:
-						Console.ForegroundColor = ConsoleColor.DarkRed;
-						outputType = "E";
-						break;
-					case TraceEventType.Information:
-						Console.ForegroundColor = ConsoleColor.DarkGreen;
-						outputType = "I";
-						break;
-					case TraceEventType.Verbose:
-						Console.ForegroundColor = ConsoleColor.Gray;
-						outputType = "V";
-						break;
-					default:
-						Console.ForegroundColor = ConsoleColor.Gray;
-						outputType = "?";
-						break;
-				}
+				//String outputType;
 
-				String formattedMessage = args.Length > 0 ? String.Format(message, args) : message;
-				//formattedMessage = LoggerExtensions.Formatter.Replace(formattedMessage, "\r" + new String(' ', 16));
+				//switch (logType)
+				//{
+				//	case TraceEventType.Critical:
+				//		Console.ForegroundColor = ConsoleColor.DarkRed;
+				//		outputType = "!";
+				//		break;
+				//	case TraceEventType.Error:
+				//		Console.ForegroundColor = ConsoleColor.DarkRed;
+				//		outputType = "E";
+				//		break;
+				//	case TraceEventType.Information:
+				//		Console.ForegroundColor = ConsoleColor.DarkGreen;
+				//		outputType = "I";
+				//		break;
+				//	case TraceEventType.Verbose:
+				//		Console.ForegroundColor = ConsoleColor.Gray;
+				//		outputType = "V";
+				//		break;
+				//	default:
+				//		Console.ForegroundColor = ConsoleColor.Gray;
+				//		outputType = "?";
+				//		break;
+				//}
 
-				Console.Write("{0} [{1}] ", DateTime.Now.ToString("HH:mm:ss"), outputType);
+				//String formattedMessage = args.Length > 0 ? String.Format(message, args) : message;
+				////formattedMessage = LoggerExtensions.Formatter.Replace(formattedMessage, "\r" + new String(' ', 16));
 
-				bool initialLine = true;
+				//Console.Write("{0} [{1}] ", DateTime.Now.ToString("HH:mm:ss"), outputType);
 
-				foreach (String output in WrapString(formattedMessage, Console.WindowWidth - CONSOLE_PREFIX_WIDTH))
-				{
-					if (!initialLine)
-						Console.Write(new String(' ', CONSOLE_PREFIX_WIDTH));
+				//bool initialLine = true;
 
-					Console.WriteLine(output);
+				//foreach (String output in WrapString(formattedMessage, Console.WindowWidth - CONSOLE_PREFIX_WIDTH))
+				//{
+				//	if (!initialLine)
+				//		Console.Write(new String(' ', CONSOLE_PREFIX_WIDTH));
 
-					initialLine = false;
-				}
+				//	Console.WriteLine(output);
 
-				// Reset the console color
-				Console.ForegroundColor = ConsoleColor.Gray;
+				//	initialLine = false;
+				//}
+
+				//// Reset the console color
+				//Console.ForegroundColor = ConsoleColor.Gray;
 			}
         }
     }

@@ -1,4 +1,6 @@
 /packages
+/RazorMediatorLayouts/bin
+/RazorMediatorLayouts/obj
 /TestRazorMediatorLayouts/bin
 /TestRazorMediatorLayouts/obj
 /TcmDebugger/bin

@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("TridionVSRazorExtension")]
-[assembly: AssemblyCopyright("Copyright ©  SDL 2015")]
+[assembly: AssemblyCopyright("Copyright © SDL 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
