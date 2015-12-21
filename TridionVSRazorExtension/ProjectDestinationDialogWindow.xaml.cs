@@ -88,6 +88,7 @@ namespace SDL.TridionVSRazorExtension
             if (this.chkChecked.IsChecked == true)
             {
                 Common.IsolatedStorage.Service.SaveToIsolatedStorage(Common.IsolatedStorage.Service.GetId(Mapping.Host, "ProjectDestination_Skip"), "true");
+                Common.IsolatedStorage.Service.SaveToIsolatedStorage(Common.IsolatedStorage.Service.GetId(Mapping.Host, "ProjectDestination_SyncTemplate"), this.chkSyncTemplate.IsChecked == true ? "true" : "");
             }
 
             this.DialogResult = true;

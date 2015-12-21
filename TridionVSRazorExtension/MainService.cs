@@ -2445,18 +2445,20 @@ namespace SDL.TridionVSRazorExtension
                     projectFile.Path = path;
                     projectFile.TcmId = item.TcmId;
                     projectFile.Checked = true;
+                    projectFile.SyncTemplate = Common.IsolatedStorage.Service.GetFromIsolatedStorage(Common.IsolatedStorage.Service.GetId(mapping.Host, "ProjectDestination_SyncTemplate")) == "true";
 
                     if (projectFolder.ChildItems.OfType<ProjectFileInfo>().All(x => x.Path != path))
                     {
                         projectFolder.ChildItems.Add(projectFile);
                     }
 
+                    string fullPath = projectFile.FullPath;
                     DateTime tridionDate = (DateTime)tridionItem.VersionInfo.RevisionDate;
                     DateTime tridionLocalDate = tridionDate.GetLocalTime(mapping.TimeZoneId);
-                    SaveVSItem(path, tridionItem.Content);
-                    File.SetAttributes(path, FileAttributes.Normal);
-                    File.SetLastWriteTime(path, tridionLocalDate);
-                    WriteSuccessLog(path + " - Saved to Visual Studio");
+                    SaveVSItem(fullPath, tridionItem.Content);
+                    File.SetAttributes(fullPath, FileAttributes.Normal);
+                    File.SetLastWriteTime(fullPath, tridionLocalDate);
+                    WriteSuccessLog(fullPath + " - Saved to Visual Studio");
                 }
                 else
                 {
@@ -2475,13 +2477,13 @@ namespace SDL.TridionVSRazorExtension
 
                         if (projectFolder != null && projectFile != null)
                         {
-                            string path = projectFile.FullPath;
+                            string fullPath = projectFile.FullPath;
                             DateTime tridionDate = (DateTime)tridionItem.VersionInfo.RevisionDate;
                             DateTime tridionLocalDate = tridionDate.GetLocalTime(mapping.TimeZoneId);
-                            SaveVSItem(path, tridionItem.Content);
-                            File.SetAttributes(path, FileAttributes.Normal);
-                            File.SetLastWriteTime(path, tridionLocalDate);
-                            WriteSuccessLog(path + " - Saved to Visual Studio");
+                            SaveVSItem(fullPath, tridionItem.Content);
+                            File.SetAttributes(fullPath, FileAttributes.Normal);
+                            File.SetLastWriteTime(fullPath, tridionLocalDate);
+                            WriteSuccessLog(fullPath + " - Saved to Visual Studio");
                         }
                     }
                 }
@@ -2517,12 +2519,13 @@ namespace SDL.TridionVSRazorExtension
                         projectFolder.ChildItems.Add(projectFile);
                     }
 
+                    string fullPath = projectFile.FullPath;
                     DateTime tridionDate = (DateTime)tridionItem.VersionInfo.RevisionDate;
                     DateTime tridionLocalDate = tridionDate.GetLocalTime(mapping.TimeZoneId);
-                    SaveVSItem(path, tridionItem.Content);
-                    File.SetAttributes(path, FileAttributes.Normal);
-                    File.SetLastWriteTime(path, tridionLocalDate);
-                    WriteSuccessLog(path + " - Saved to Visual Studio");
+                    SaveVSBinaryItem(mapping, projectFile.TcmId, fullPath);
+                    File.SetAttributes(fullPath, FileAttributes.Normal);
+                    File.SetLastWriteTime(fullPath, tridionLocalDate);
+                    WriteSuccessLog(fullPath + " - Saved to Visual Studio");
                 }
                 else
                 {
@@ -2539,13 +2542,13 @@ namespace SDL.TridionVSRazorExtension
 
                         if (projectFolder != null && projectFile != null)
                         {
-                            string path = projectFile.FullPath;
+                            string fullPath = projectFile.FullPath;
                             DateTime tridionDate = (DateTime)tridionItem.VersionInfo.RevisionDate;
                             DateTime tridionLocalDate = tridionDate.GetLocalTime(mapping.TimeZoneId);
-                            SaveVSBinaryItem(mapping, projectFile.TcmId, path);
-                            File.SetAttributes(path, FileAttributes.Normal);
-                            File.SetLastWriteTime(path, tridionLocalDate);
-                            WriteSuccessLog(path + " - Saved to Visual Studio successfully");
+                            SaveVSBinaryItem(mapping, projectFile.TcmId, fullPath);
+                            File.SetAttributes(fullPath, FileAttributes.Normal);
+                            File.SetLastWriteTime(fullPath, tridionLocalDate);
+                            WriteSuccessLog(fullPath + " - Saved to Visual Studio");
                         }
                     }
                 }
@@ -3277,6 +3280,8 @@ namespace SDL.TridionVSRazorExtension
 
                 file.TestItemTcmId = dialog.TestItemTcmId;
                 file.TestTemplateTcmId = dialog.TestTemplateTcmId;
+
+                SaveConfiguration(rootPath, "TridionRazorMapping.xml", configuration);
             }
 
             string fileName = Path.GetFileNameWithoutExtension(filePath);
@@ -3286,6 +3291,7 @@ namespace SDL.TridionVSRazorExtension
             //set start .cshtml
             string baseUrl = project.Properties.Item("WebApplication.BrowseURL").Value.ToString().TrimEnd('/');
             project.Properties.Item("WebApplication.StartExternalURL").Value = baseUrl + "/"+ fileName + "/"+ testItem + "/" + testTemplate;
+            project.Properties.Item("WebApplication.DebugStartAction").Value = 3;
 
             //set start project
             solution.Properties.Item("StartupProject").Value = project.Name;

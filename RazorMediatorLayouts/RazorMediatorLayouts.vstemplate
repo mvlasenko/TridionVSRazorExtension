@@ -18,8 +18,9 @@
       <Folder Name="dependencies" TargetFolderName="dependencies">
         <ProjectItem ReplaceParameters="false" TargetFileName="TcmDebugger.COM.dll">TcmDebugger.COM.dll</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="TcmDebugger.dll">TcmDebugger.dll</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="Tridion.Extensions.Mediators.Razor.dll">Tridion.Extensions.Mediators.Razor.dll</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="TridionVSRazorExtension.Common.dll">TridionVSRazorExtension.Common.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Tridion.Common.dll">Tridion.Common.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Tridion.ContentManager.Templating.CompoundTemplates.DomainModel.dll">Tridion.ContentManager.Templating.CompoundTemplates.DomainModel.dll</ProjectItem>
       </Folder>
       <Folder Name="App_Start" TargetFolderName="App_Start">
         <ProjectItem ReplaceParameters="true" TargetFileName="RouteConfig.cs">RouteConfig.cs</ProjectItem>
@@ -37,6 +38,7 @@
         <Folder Name="PageLayouts" TargetFolderName="PageLayouts" />
         <Folder Name="Shared" TargetFolderName="Shared">
           <ProjectItem ReplaceParameters="true" TargetFileName="MappingError.cshtml">MappingError.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Home.cshtml">Home.cshtml</ProjectItem>
         </Folder>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>

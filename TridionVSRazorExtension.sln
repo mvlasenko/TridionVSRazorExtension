@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TridionVSRazorExtension", "TridionVSRazorExtension\TridionVSRazorExtension.csproj", "{B12A772B-EB90-49DB-9603-AFB9E4EDD9F4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E555BADA-9B71-4EE7-8C7C-8ED9D7C77A3A} = {E555BADA-9B71-4EE7-8C7C-8ED9D7C77A3A}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcmDebugger", "TcmDebugger\TcmDebugger.csproj", "{8AA8C50A-B392-44EE-A279-3439A442D133}"
 EndProject
@@ -12,6 +15,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRazorMediatorLayouts", "TestRazorMediatorLayouts\TestRazorMediatorLayouts.csproj", "{5A113FA1-DB4F-4FFF-A5A6-1C0CCDAD2C27}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMediatorLayouts", "RazorMediatorLayouts\RazorMediatorLayouts.csproj", "{E555BADA-9B71-4EE7-8C7C-8ED9D7C77A3A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8AA8C50A-B392-44EE-A279-3439A442D133} = {8AA8C50A-B392-44EE-A279-3439A442D133}
+		{E4381E87-10CD-464A-95A3-ACB7461534F8} = {E4381E87-10CD-464A-95A3-ACB7461534F8}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

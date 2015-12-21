@@ -80,6 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Views\Shared\Home.cshtml" />
     <None Include="WrappedTridionRazorTemplate.cs" />
     <None Include="App_Start\RouteConfig.cs" />
     <None Include="Controllers\DefaultController.cs" />
@@ -124,7 +125,8 @@
   <ItemGroup>
     <Content Include="dependencies\TcmDebugger.COM.dll" />
     <Content Include="dependencies\TcmDebugger.dll" />
-    <Content Include="dependencies\Tridion.Extensions.Mediators.Razor.dll" />
+    <Content Include="dependencies\Tridion.Common.dll" />
+    <Content Include="dependencies\Tridion.ContentManager.Templating.CompoundTemplates.DomainModel.dll" />
     <Content Include="dependencies\TridionVSRazorExtension.Common.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

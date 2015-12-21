@@ -1,0 +1,22 @@
+@inherits System.Web.Mvc.WebViewPage
+
+<article>
+    <h1>
+        Select file to debug
+    </h1>
+    <ul>
+        @foreach (string path in ViewBag.Pages.Keys)
+        {
+            <li>
+                @if (string.IsNullOrEmpty(ViewBag.Pages[path]))
+                {
+                    @path
+                }
+                else
+                {
+                    <a href="@ViewBag.Pages[path]">@path</a>
+                }
+            </li>
+        }
+    </ul>
+</article>
