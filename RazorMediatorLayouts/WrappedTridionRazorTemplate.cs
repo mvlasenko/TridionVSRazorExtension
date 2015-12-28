@@ -11,7 +11,7 @@ using $safeprojectname$.Controllers;
 
 namespace $safeprojectname$
 {
-    public class WrappedTridionRazorTemplate : WebViewPage
+    public partial class WrappedTridionRazorTemplate : WebViewPage
     {
         private readonly TridionRazorTemplate _tridionRazorTemplate;
 

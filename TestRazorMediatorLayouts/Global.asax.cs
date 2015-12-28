@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace SDL.TestRazorMediatorLayouts
+namespace TestRazorMediatorLayouts
 {
     public class MvcApplication : System.Web.HttpApplication
     {

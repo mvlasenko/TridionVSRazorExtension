@@ -11,7 +11,7 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SDL.TestRazorMediatorLayouts</RootNamespace>
+    <RootNamespace>TestRazorMediatorLayouts</RootNamespace>
     <AssemblyName>TestRazorMediatorLayouts</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
@@ -133,12 +133,21 @@
     <None Include="Views\ComponentLayouts\Annual Event Detail TBB.cshtml" />
     <Content Include="Views\Shared\MappingError.cshtml" />
     <Content Include="Views\Shared\Home.cshtml" />
+    <Content Include="Views\Shared\MainHelpers.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>MainHelpers.generated.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shared\MainHelpers.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainHelpers.cshtml</DependentUpon>
     </Compile>
     <Compile Include="WrappedTridionRazorTemplate.cs" />
   </ItemGroup>

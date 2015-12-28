@@ -80,7 +80,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Views\Shared\MainHelpers.generated.cs" />
     <None Include="Views\Shared\Home.cshtml" />
+    <None Include="Views\Shared\MainHelpers.cshtml" />
     <None Include="WrappedTridionRazorTemplate.cs" />
     <None Include="App_Start\RouteConfig.cs" />
     <None Include="Controllers\DefaultController.cs" />

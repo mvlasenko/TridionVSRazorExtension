@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="SDL.TestRazorMediatorLayouts.MvcApplication" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="TestRazorMediatorLayouts.MvcApplication" Language="C#" %>

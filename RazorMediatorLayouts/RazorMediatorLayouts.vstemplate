@@ -39,6 +39,8 @@
         <Folder Name="Shared" TargetFolderName="Shared">
           <ProjectItem ReplaceParameters="true" TargetFileName="MappingError.cshtml">MappingError.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Home.cshtml">Home.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="MainHelpers.cshtml">MainHelpers.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="MainHelpers.generated.cs">MainHelpers.generated.cs</ProjectItem>
         </Folder>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
