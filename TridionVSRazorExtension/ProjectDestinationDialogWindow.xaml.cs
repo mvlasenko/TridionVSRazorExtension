@@ -62,15 +62,8 @@ namespace SDL.TridionVSRazorExtension
 
             ProjectFolderRole role = folder.ProjectFolderRole;
 
-            if (role == ProjectFolderRole.PageLayout || role == ProjectFolderRole.ComponentLayout)
-            {
-                this.chkSyncTemplate.IsEnabled = true;
-            }
-            else
-            {
-                this.chkSyncTemplate.IsEnabled = false;
-                this.chkSyncTemplate.IsChecked = false;
-            }
+            this.chkSyncTemplate.IsEnabled = role == ProjectFolderRole.PageLayout || role == ProjectFolderRole.ComponentLayout;
+            this.chkSyncTemplate.IsChecked = Common.IsolatedStorage.Service.GetFromIsolatedStorage(Common.IsolatedStorage.Service.GetId(Mapping.Host, "ProjectDestination_SyncTemplate")) == "true";
         }
 
         private void ListBox1_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -85,11 +78,12 @@ namespace SDL.TridionVSRazorExtension
         {
             this.SaveResult();
 
-            if (this.chkChecked.IsChecked == true)
+            if (this.chkSkip.IsChecked == true)
             {
-                Common.IsolatedStorage.Service.SaveToIsolatedStorage(Common.IsolatedStorage.Service.GetId(Mapping.Host, "ProjectDestination_Skip"), "true");
-                Common.IsolatedStorage.Service.SaveToIsolatedStorage(Common.IsolatedStorage.Service.GetId(Mapping.Host, "ProjectDestination_SyncTemplate"), this.chkSyncTemplate.IsChecked == true ? "true" : "");
+                MainService.ProjectDestination_Skip = true;
             }
+
+            Common.IsolatedStorage.Service.SaveToIsolatedStorage(Common.IsolatedStorage.Service.GetId(Mapping.Host, "ProjectDestination_SyncTemplate"), this.chkSyncTemplate.IsChecked == true ? "true" : "");
 
             this.DialogResult = true;
             this.Close();

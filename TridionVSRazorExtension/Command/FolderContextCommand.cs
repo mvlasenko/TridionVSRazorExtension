@@ -97,14 +97,11 @@ namespace SDL.TridionVSRazorExtension.Command
             {
                 foreach (ProjectItem folder in applicationObject.SelectedItems.Cast<SelectedItem>().Select(item => item.ProjectItem))
                 {
-                    if (folder.ProjectItems.Cast<ProjectItem>().Any(file => file.Name.EndsWith(".cshtml") || file.Name.IsAllowedMimeType()))
-                        continue;
-
-                    if (folder.FileNames[0].Contains("Views\\Shared"))
-                        continue;
-
-                    MessageBox.Show("Folder '" + folder.Name + "' is not supported.", "Wrong Operation", MessageBoxButton.OK, MessageBoxImage.Information);
-                    return;
+                    if (!folder.ProjectItems.Cast<ProjectItem>().Any(file => file.Name.EndsWith(".cshtml") || file.Name.IsAllowedMimeType()))
+                    {
+                        MessageBox.Show("Folder '" + folder.Name + "' is not supported.", "Wrong Operation", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
+                    }
                 }
 
                 var folders = applicationObject.SelectedItems.Cast<SelectedItem>().Select(item => item.ProjectItem.FileNames[0].Trim('\\'));

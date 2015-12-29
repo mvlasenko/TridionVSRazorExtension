@@ -35,6 +35,7 @@ namespace SDL.TridionVSRazorExtension
         public static Project Project;
         public static TextBlock TxtLog;
         public static string RootPath;
+        public static bool ProjectDestination_Skip;
         public static BindingType ClientBindingType = BindingType.HttpBinding;
         public static string ClientVersion = "2013";
 
@@ -2331,7 +2332,7 @@ namespace SDL.TridionVSRazorExtension
             }
             else if (File.Exists(helperPath) && File.GetLastWriteTime(helperPath) < File.GetLastWriteTime(vsHelperPath))
             {
-                string code = File.ReadAllText(helperPath);
+                string code = File.ReadAllText(vsHelperPath);
                 string defaultNamespace = Project.Properties.Item("DefaultNamespace").Value.ToString();
                 code = code.Replace("@inherits Tridion.Extensions.Mediators.Razor.TridionRazorTemplate", "");
                 code = code.Replace("@inherits " + defaultNamespace + ".WrappedTridionRazorTemplate", "");
@@ -2471,7 +2472,7 @@ namespace SDL.TridionVSRazorExtension
 
                 ShowMessage(item.Title + "...");
 
-                if (Common.IsolatedStorage.Service.GetFromIsolatedStorage(Common.IsolatedStorage.Service.GetId(mapping.Host, "ProjectDestination_Skip")) == "true")
+                if (ProjectDestination_Skip)
                 {
                     //skip checkbox is pressed
 
@@ -2552,7 +2553,7 @@ namespace SDL.TridionVSRazorExtension
 
                 ShowMessage(item.Title + "...");
 
-                if (Common.IsolatedStorage.Service.GetFromIsolatedStorage(Common.IsolatedStorage.Service.GetId(mapping.Host, "ProjectDestination_Skip")) == "true")
+                if (ProjectDestination_Skip)
                 {
                     ProjectFolderInfo projectFolder = mapping.ProjectFolders.FirstOrDefault(x => x.ProjectFolderRole == ProjectFolderRole.Binary) ?? new ProjectFolderInfo();
                     if (projectFolder.ChildItems == null)
@@ -2842,6 +2843,8 @@ namespace SDL.TridionVSRazorExtension
             if (filePaths.Length == 1 && filePaths[0].Contains("Views\\Shared"))
             {
                 ProcessHelper();
+                MessageBox.Show("Helper synchronization finished", "Finish", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
             }
 
             Configuration configuration = Service.GetConfiguration(rootPath, "TridionRazorMapping.xml");
@@ -2901,6 +2904,8 @@ namespace SDL.TridionVSRazorExtension
             if (folderPaths.Length == 1 && folderPaths[0].Contains("Views\\Shared"))
             {
                 ProcessHelper();
+                MessageBox.Show("Helper synchronization finished", "Finish", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
             }
 
             Configuration configuration = Service.GetConfiguration(rootPath, "TridionRazorMapping.xml");
