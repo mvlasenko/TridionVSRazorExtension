@@ -2290,6 +2290,59 @@ namespace SDL.TridionVSRazorExtension
             ShowMessage(String.Empty);
         }
 
+        public static void ProcessHelper()
+        {
+            XDocument webCofigDoc = XDocument.Parse(File.ReadAllText(Path.Combine(RootPath, "Web.config")));
+
+            XElement tridionConfigElement = Common.Xml.Service.GetByXPath(webCofigDoc.Root, "/configuration/tridionConfigSections/sections/add", "");
+            if (tridionConfigElement == null)
+                return;
+
+            string tridionConfigPath = tridionConfigElement.Attribute("filePath").Value;
+
+            XDocument tridionCofigDoc = XDocument.Parse(File.ReadAllText(tridionConfigPath));
+
+            XElement helperConfigElement = Common.Xml.Service.GetByXPath(tridionCofigDoc.Root, "/configuration/razor.mediator/imports/add", "");
+            if (helperConfigElement == null)
+                return;
+
+            string helperPath = helperConfigElement.Attribute("import").Value;
+            string vsHelperPath = Path.Combine(RootPath, "Views\\Shared\\" + Path.GetFileNameWithoutExtension(helperPath).Replace(" ", "") + ".cshtml");
+
+            if (!File.Exists(vsHelperPath) || File.GetLastWriteTime(helperPath) > File.GetLastWriteTime(vsHelperPath))
+            {
+                string code = File.ReadAllText(helperPath);
+                string defaultNamespace = Project.Properties.Item("DefaultNamespace").Value.ToString();
+                code = "@inherits " + defaultNamespace + ".WrappedTridionRazorTemplate\r\n\r\n" + code;
+                code = "@* Generator : MvcView RazorVersion : 55 *@\r\n" + code;
+
+                File.WriteAllText(vsHelperPath, code);
+                File.SetLastWriteTime(vsHelperPath, File.GetLastWriteTime(helperPath));
+
+                ProjectItem item = Project.ProjectItems.AddFromFile(vsHelperPath);
+
+                //BuildAction == Content
+                item.Properties.Item("BuildAction").Value = 2;
+
+                //set razor generator
+                item.Properties.Item("CustomTool").Value = "RazorGenerator";
+
+                Marshal.ReleaseComObject(item);
+            }
+            else if (File.Exists(helperPath) && File.GetLastWriteTime(helperPath) < File.GetLastWriteTime(vsHelperPath))
+            {
+                string code = File.ReadAllText(helperPath);
+                string defaultNamespace = Project.Properties.Item("DefaultNamespace").Value.ToString();
+                code = code.Replace("@inherits Tridion.Extensions.Mediators.Razor.TridionRazorTemplate", "");
+                code = code.Replace("@inherits " + defaultNamespace + ".WrappedTridionRazorTemplate", "");
+                code = code.Replace("@* Generator : MvcView RazorVersion : 55 *@", "");
+                code = code.TrimStart();
+
+                File.WriteAllText(helperPath, code);
+                File.SetLastWriteTime(helperPath, File.GetLastWriteTime(vsHelperPath));
+            }
+        }
+
         private static string GetContainerTcmId(MappingInfo mapping, TridionRole tridionRole, ProjectFolderInfo folder, string path)
         {
             if (folder != null && !String.IsNullOrEmpty(folder.TcmId))
@@ -2786,6 +2839,11 @@ namespace SDL.TridionVSRazorExtension
             RootPath = rootPath;
             Project = project;
 
+            if (filePaths.Length == 1 && filePaths[0].Contains("Views\\Shared"))
+            {
+                ProcessHelper();
+            }
+
             Configuration configuration = Service.GetConfiguration(rootPath, "TridionRazorMapping.xml");
 
             MappingInfo mapping = configuration.FirstOrDefault(x => x.Name == (configuration.DefaultConfiguration ?? "Default"));
@@ -2839,6 +2897,11 @@ namespace SDL.TridionVSRazorExtension
 
             RootPath = rootPath;
             Project = project;
+
+            if (folderPaths.Length == 1 && folderPaths[0].Contains("Views\\Shared"))
+            {
+                ProcessHelper();
+            }
 
             Configuration configuration = Service.GetConfiguration(rootPath, "TridionRazorMapping.xml");
 

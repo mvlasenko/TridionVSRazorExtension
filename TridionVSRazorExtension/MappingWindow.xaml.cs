@@ -255,7 +255,6 @@ namespace SDL.TridionVSRazorExtension
         {
             this.SaveConfiguration();
 
-            //run current
             foreach (ProjectFolderInfo folder in this.CurrentMapping.ProjectFolders)
             {
                 MainService.ProcessFolder(this.CurrentMapping, folder);
@@ -265,6 +264,8 @@ namespace SDL.TridionVSRazorExtension
             {
                 MainService.ProcessTridionFolder(this.CurrentMapping, tridionFolder);
             }
+
+            MainService.ProcessHelper();
 
             this.SaveConfiguration();
 

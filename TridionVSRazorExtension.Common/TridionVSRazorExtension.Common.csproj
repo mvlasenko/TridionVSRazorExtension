@@ -61,6 +61,7 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Configuration\Service.cs" />
+    <Compile Include="Xml\Service.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.pfx" />
