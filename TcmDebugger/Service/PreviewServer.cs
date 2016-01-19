@@ -59,7 +59,7 @@ namespace TcmDebugger.Service
 						if (localHttpListener == null || !localHttpListener.IsListening)
 							return;
 
-						ProcessRequest(localHttpListener.EndGetContext(callback));
+						//ProcessRequest(localHttpListener.EndGetContext(callback));
 						// handle the request in httpContext, some requests can take some time to complete
 					}, httpListener);
 
