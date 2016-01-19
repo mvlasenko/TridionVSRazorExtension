@@ -14,7 +14,7 @@
             <Label Content="Tridion Folder" Height="23" HorizontalAlignment="Left" Name="lblTridionFolders" VerticalAlignment="Top" Margin="2" />
             <ListBox Height="70" HorizontalAlignment="Center" Name="lstTridionFolders" VerticalAlignment="Center" Width="472" Margin="2" MouseDoubleClick="lstTridionFolders_OnMouseDoubleClick" SelectionChanged="lstTridionFolders_OnSelectionChanged" />
 
-            <StackPanel Orientation="Horizontal" Height="30" Margin="12,4,0,0">
+            <StackPanel Orientation="Horizontal" Height="36" Margin="12,4,0,0">
                 <Button Content="Ok" Height="23" Name="btnOk" Width="75" Margin="6,0,0,0" Click="btnOk_Click" IsDefault="True" />
                 <Button Content="Cancel" Height="23" Name="btnCancel" Width="75" Margin="10,0,0,0" Click="btnCancel_Click" IsCancel="True" />
             </StackPanel>

@@ -89,6 +89,30 @@ namespace SDL.TridionVSRazorExtension.Common.Misc
             return uri.Host;
         }
 
+        public static int GetPort(this string url)
+        {
+            if (!url.Contains(Uri.SchemeDelimiter))
+            {
+                url = string.Concat(Uri.UriSchemeHttp, Uri.SchemeDelimiter, url);
+            }
+            Uri uri = new Uri(url);
+            return uri.Port;
+        }
+
+        public static string GetDomainNameAndPort(this string url)
+        {
+            if (!url.Contains(Uri.SchemeDelimiter))
+            {
+                url = string.Concat(Uri.UriSchemeHttp, Uri.SchemeDelimiter, url);
+            }
+            Uri uri = new Uri(url);
+
+            if (uri.Port == 80)
+                return uri.Host;
+
+            return uri.Host + ":" + uri.Port;
+        }
+
         public static string GetMimeType(this string url)
         {
             string extension = Path.GetExtension(url);

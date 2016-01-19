@@ -176,7 +176,7 @@ namespace SDL.TridionVSRazorExtension
             if (String.IsNullOrEmpty(host))
                 host = "localhost";
 
-            host = host.GetDomainName();
+            host = host.GetDomainNameAndPort();
 
             var binding = GetBinding();
 
@@ -203,7 +203,7 @@ namespace SDL.TridionVSRazorExtension
             if (String.IsNullOrEmpty(host))
                 host = "localhost";
 
-            host = host.GetDomainName();
+            host = host.GetDomainNameAndPort();
 
             var binding = GetHttpBinding3();
 
@@ -259,7 +259,7 @@ namespace SDL.TridionVSRazorExtension
             if (String.IsNullOrEmpty(host))
                 host = "localhost";
 
-            host = host.GetDomainName();
+            host = host.GetDomainNameAndPort();
 
             var binding = GetHttpBinding2();
 
@@ -300,7 +300,7 @@ namespace SDL.TridionVSRazorExtension
             if (String.IsNullOrEmpty(host))
                 host = "localhost";
 
-            host = host.GetDomainName();
+            host = host.GetDomainNameAndPort();
 
             var binding = GetHttpBinding();
 
@@ -336,7 +336,7 @@ namespace SDL.TridionVSRazorExtension
             {
                 try
                 {
-                    tcpScan.Connect(mapping.Host, 80);
+                    tcpScan.Connect(mapping.Host.GetDomainName(), mapping.Host.GetPort());
                     return true;
                 }
                 catch (Exception ex)
@@ -2300,6 +2300,9 @@ namespace SDL.TridionVSRazorExtension
                 return;
 
             string tridionConfigPath = tridionConfigElement.Attribute("filePath").Value;
+
+            if (!File.Exists(tridionConfigPath))
+                return;
 
             XDocument tridionCofigDoc = XDocument.Parse(File.ReadAllText(tridionConfigPath));
 
