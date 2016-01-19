@@ -57,7 +57,7 @@ namespace SDL.TridionVSRazorExtension
 
             if (this.chkSkip.IsChecked == true)
             {
-                MainService.ProjectDestination_Skip = true;
+                MainService.ProjectDestinationSkip = true;
             }
 
             this.DialogResult = true;

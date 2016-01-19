@@ -7,6 +7,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <UseCodebase>true</UseCodebase>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -25,7 +26,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SDL.TridionVSRazorExtension</RootNamespace>
     <AssemblyName>TridionVSRazorExtension</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
     <IncludeDebugSymbolsInVSIXContainer>true</IncludeDebugSymbolsInVSIXContainer>
@@ -54,9 +55,6 @@
     <Compile Include="BinaryDiffDialogWindow.xaml.cs">
       <DependentUpon>BinaryDiffDialogWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Client\ILocalClient.cs" />
-    <Compile Include="Client\LocalCoreServiceClient.cs" />
-    <Compile Include="Client\LocalSessionAwareCoreServiceClient.cs" />
     <Compile Include="Command\FolderContextCommand.cs" />
     <Compile Include="Command\ItemContextCommand.cs" />
     <Compile Include="Command\ItemContextDebugCommand.cs" />

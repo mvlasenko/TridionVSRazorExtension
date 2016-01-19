@@ -63,7 +63,7 @@ namespace SDL.TridionVSRazorExtension
             ProjectFolderRole role = folder.ProjectFolderRole;
 
             this.chkSyncTemplate.IsEnabled = role == ProjectFolderRole.PageLayout || role == ProjectFolderRole.ComponentLayout;
-            this.chkSyncTemplate.IsChecked = Common.IsolatedStorage.Service.GetFromIsolatedStorage(Common.IsolatedStorage.Service.GetId(Mapping.Host, "ProjectDestination_SyncTemplate")) == "true";
+            this.chkSyncTemplate.IsChecked = Common.IsolatedStorage.Service.GetFromIsolatedStorage(Common.IsolatedStorage.Service.GetId(Mapping.Host.GetDomainName(), Mapping.Host.GetPort(), "ProjectDestination_SyncTemplate")) == "true";
         }
 
         private void ListBox1_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -80,10 +80,10 @@ namespace SDL.TridionVSRazorExtension
 
             if (this.chkSkip.IsChecked == true)
             {
-                MainService.ProjectDestination_Skip = true;
+                MainService.ProjectDestinationSkip = true;
             }
 
-            Common.IsolatedStorage.Service.SaveToIsolatedStorage(Common.IsolatedStorage.Service.GetId(Mapping.Host, "ProjectDestination_SyncTemplate"), this.chkSyncTemplate.IsChecked == true ? "true" : "");
+            Common.IsolatedStorage.Service.SaveToIsolatedStorage(Common.IsolatedStorage.Service.GetId(Mapping.Host.GetDomainName(), Mapping.Host.GetPort(), "ProjectDestination_SyncTemplate"), this.chkSyncTemplate.IsChecked == true ? "true" : "");
 
             this.DialogResult = true;
             this.Close();

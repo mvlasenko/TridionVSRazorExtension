@@ -21,9 +21,9 @@ using System.ServiceModel;
 using System.Web;
 using System.Xml;
 using System.Xml.Linq;
+using TcmDebugger.COM.cm_defines;
+using TcmDebugger.COM.cm_sys;
 using TcmDebugger.Misc;
-using Tridion.ContentManager.Interop.cm_sys;
-using Tridion.ContentManager.Interop.TDSDefines;
 using core = Tridion.ContentManager.CoreService.Client;
 
 namespace TcmDebugger.Legacy

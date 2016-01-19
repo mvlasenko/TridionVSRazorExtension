@@ -14,7 +14,6 @@ using System.Xml;
 using System.Xml.Linq;
 using DiffMatchPatch;
 using EnvDTE;
-using SDL.TridionVSRazorExtension.Client;
 using Tridion.ContentManager.CoreService.Client;
 using SDL.TridionVSRazorExtension.Common.Configuration;
 using SDL.TridionVSRazorExtension.Common.Misc;
@@ -29,16 +28,14 @@ namespace SDL.TridionVSRazorExtension
     {
         #region Fields
 
-        public static ILocalClient Client;
+        public static CoreServiceClient Client;
         public static StreamDownloadClient StreamDownloadClient;
         public static StreamUploadClient StreamUploadClient;
         public static Project Project;
         public static TextBlock TxtLog;
         public static string RootPath;
-        public static bool ProjectDestination_Skip;
-        public static BindingType ClientBindingType = BindingType.HttpBinding;
-        public static string ClientVersion = "2013";
-
+        public static bool ProjectDestinationSkip;
+        
         #endregion
 
         #region Tridion CoreService
@@ -171,18 +168,18 @@ namespace SDL.TridionVSRazorExtension
             return binding;
         }
 
-        public static LocalSessionAwareCoreServiceClient GetTcpClient(string host, string username, string password)
+        public static SessionAwareCoreServiceClient GetTcpClient(string host, string username, string password)
         {
             if (String.IsNullOrEmpty(host))
                 host = "localhost";
 
-            host = host.GetDomainName();
+            host = host.GetDomainNameAndPort();
 
             var binding = GetBinding();
 
-            var endpoint = new EndpointAddress(String.Format("net.tcp://{0}:2660/CoreService/{1}/netTcp", host, ClientVersion));
+            var endpoint = new EndpointAddress(String.Format("net.tcp://{0}:2660/CoreService/201501/netTcp", host));
 
-            var client = new LocalSessionAwareCoreServiceClient(binding, endpoint);
+            var client = new SessionAwareCoreServiceClient(binding, endpoint);
 
             if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
             {
@@ -192,24 +189,24 @@ namespace SDL.TridionVSRazorExtension
             return client;
         }
 
-        public static LocalSessionAwareCoreServiceClient GetTcpClient(MappingInfo mapping)
+        public static SessionAwareCoreServiceClient GetTcpClient(MappingInfo mapping)
         {
             EnsureCredentialsNotEmpty(mapping);
             return GetTcpClient(mapping.Host, mapping.Username, mapping.Password);
         }
 
-        public static LocalCoreServiceClient GetHttpClient(string host, string username, string password)
+        public static CoreServiceClient GetHttpClient(string host, string username, string password)
         {
             if (String.IsNullOrEmpty(host))
                 host = "localhost";
 
-            host = host.GetDomainName();
+            host = host.GetDomainNameAndPort();
 
             var binding = GetHttpBinding3();
 
-            var endpoint = new EndpointAddress(String.Format("http://{0}/webservices/CoreService{1}.svc/basicHttp", host, ClientVersion));
+            var endpoint = new EndpointAddress(String.Format("http://{0}/webservices/CoreService201501.svc/basicHttp", host));
 
-            var client = new LocalCoreServiceClient(binding, endpoint);
+            var client = new CoreServiceClient(binding, endpoint);
 
             if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
             {
@@ -220,7 +217,7 @@ namespace SDL.TridionVSRazorExtension
             return client;
         }
 
-        public static LocalCoreServiceClient GetHttpClient(MappingInfo mapping)
+        public static CoreServiceClient GetHttpClient(MappingInfo mapping)
         {
             EnsureCredentialsNotEmpty(mapping);
             return GetHttpClient(mapping.Host, mapping.Username, mapping.Password);
@@ -228,12 +225,9 @@ namespace SDL.TridionVSRazorExtension
 
         public static bool EnsureValidClient(MappingInfo mapping)
         {
-            if (Client == null || Client is SessionAwareCoreServiceClient && ((SessionAwareCoreServiceClient)Client).InnerChannel.State == CommunicationState.Faulted)
+            if (Client == null)
             {
-                if (ClientBindingType == BindingType.HttpBinding)
-                    Client = GetHttpClient(mapping.Host, mapping.Username, mapping.Password);
-                else
-                    Client = GetTcpClient(mapping.Host, mapping.Username, mapping.Password);
+                Client = GetHttpClient(mapping.Host, mapping.Username, mapping.Password);
 
                 try
                 {
@@ -259,11 +253,11 @@ namespace SDL.TridionVSRazorExtension
             if (String.IsNullOrEmpty(host))
                 host = "localhost";
 
-            host = host.GetDomainName();
+            host = host.GetDomainNameAndPort();
 
             var binding = GetHttpBinding2();
 
-            var endpoint = new EndpointAddress(String.Format("http://{0}/webservices/CoreService{1}.svc/streamDownload_basicHttp", host, ClientVersion));
+            var endpoint = new EndpointAddress(String.Format("http://{0}/webservices/CoreService201501.svc/streamDownload_basicHttp", host));
 
             StreamDownloadClient client = new StreamDownloadClient(binding, endpoint);
 
@@ -300,11 +294,11 @@ namespace SDL.TridionVSRazorExtension
             if (String.IsNullOrEmpty(host))
                 host = "localhost";
 
-            host = host.GetDomainName();
+            host = host.GetDomainNameAndPort();
 
             var binding = GetHttpBinding();
 
-            var endpoint = new EndpointAddress(String.Format("http://{0}/webservices/CoreService{1}.svc/streamUpload_basicHttp", host, ClientVersion));
+            var endpoint = new EndpointAddress(String.Format("http://{0}/webservices/CoreService201501.svc/streamUpload_basicHttp", host));
 
             StreamUploadClient client = new StreamUploadClient(binding, endpoint);
 
@@ -336,7 +330,7 @@ namespace SDL.TridionVSRazorExtension
             {
                 try
                 {
-                    tcpScan.Connect(mapping.Host, 80);
+                    tcpScan.Connect(mapping.Host.GetDomainName(), mapping.Host.GetPort());
                     return true;
                 }
                 catch (Exception ex)
@@ -858,7 +852,10 @@ namespace SDL.TridionVSRazorExtension
             string tempLocation;
             using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
-                tempLocation = StreamUploadClient.UploadBinaryContent(title, fs);
+                AccessTokenData accessToken = new AccessTokenData();
+                accessToken.Title = title;
+                //todo: finish accessToken
+                tempLocation = StreamUploadClient.UploadBinaryContent(accessToken, fs);
             }
             if (String.IsNullOrEmpty(tempLocation))
                 return null;
@@ -2301,6 +2298,9 @@ namespace SDL.TridionVSRazorExtension
 
             string tridionConfigPath = tridionConfigElement.Attribute("filePath").Value;
 
+            if (!File.Exists(tridionConfigPath))
+                return;
+
             XDocument tridionCofigDoc = XDocument.Parse(File.ReadAllText(tridionConfigPath));
 
             XElement helperConfigElement = Common.Xml.Service.GetByXPath(tridionCofigDoc.Root, "/configuration/razor.mediator/imports/add", "");
@@ -2472,7 +2472,7 @@ namespace SDL.TridionVSRazorExtension
 
                 ShowMessage(item.Title + "...");
 
-                if (ProjectDestination_Skip)
+                if (ProjectDestinationSkip)
                 {
                     //skip checkbox is pressed
 
@@ -2553,7 +2553,7 @@ namespace SDL.TridionVSRazorExtension
 
                 ShowMessage(item.Title + "...");
 
-                if (ProjectDestination_Skip)
+                if (ProjectDestinationSkip)
                 {
                     ProjectFolderInfo projectFolder = mapping.ProjectFolders.FirstOrDefault(x => x.ProjectFolderRole == ProjectFolderRole.Binary) ?? new ProjectFolderInfo();
                     if (projectFolder.ChildItems == null)

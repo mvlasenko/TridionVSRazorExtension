@@ -37,7 +37,7 @@ namespace SDL.TridionVSRazorExtension.Common.IsolatedStorage
 
         public static string GetId(params object[] keys)
         {
-            return String.Join("_", keys).Replace("tcm:", "").Replace("http:", "").Replace("https:", "").Replace("/", "").Replace("<", "").Replace(">", "").Replace("[", "").Replace("]", "").Replace("-", "").Replace(" ", "");
+            return String.Join("_", keys).Replace("tcm:", "").Replace("http:", "").Replace("https:", "").Replace("/", "").Replace("<", "").Replace(">", "").Replace("[", "").Replace("]", "").Replace("-", "").Replace(":", "_").Replace(" ", "");
         }
 
     }

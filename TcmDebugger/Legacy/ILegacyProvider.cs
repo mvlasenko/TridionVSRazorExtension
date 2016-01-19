@@ -15,8 +15,8 @@
 #endregion
 using System;
 using System.Runtime.InteropServices;
-using Tridion.ContentManager.Interop.cm_sys;
-using Tridion.ContentManager.Interop.TDSDefines;
+using TcmDebugger.COM.cm_defines;
+using TcmDebugger.COM.cm_sys;
 
 namespace TcmDebugger.Legacy
 {

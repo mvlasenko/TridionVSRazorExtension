@@ -71,10 +71,10 @@ namespace TcmDebugger.Mediators
         /// <param name="package"><see cref="T:Tridion.ContentManager.Templating.Package"/></param>
 		public void Transform(Engine engine, Template template, Package package)
 		{
-            //RazorHandler handler = new RazorHandler(template.Id.ToString(), template.WebDavUrl, template.Content, template);
-            //handler.Initialize();
+            RazorHandler handler = new RazorHandler(template.Id.ToString(), template.WebDavUrl, template.Content, template);
+            handler.Initialize();
 
-            //string output = handler.CompileAndExecute(template.RevisionDate, engine, package);
+            string output = handler.CompileAndExecute(template.RevisionDate, engine, package);
 
             Engine = engine;
             Template = template;
