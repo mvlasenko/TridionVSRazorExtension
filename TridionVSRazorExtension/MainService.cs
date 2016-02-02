@@ -21,6 +21,7 @@ using SDL.TridionVSRazorExtension.Misc;
 using SDL.TridionVSRazorExtension.Tridion;
 using Application = System.Windows.Forms.Application;
 using Configuration = SDL.TridionVSRazorExtension.Common.Configuration.Configuration;
+using SDL.TridionVSRazorExtension.Client;
 
 namespace SDL.TridionVSRazorExtension
 {
@@ -28,14 +29,17 @@ namespace SDL.TridionVSRazorExtension
     {
         #region Fields
 
-        public static CoreServiceClient Client;
+        public static ILocalClient Client;
         public static StreamDownloadClient StreamDownloadClient;
         public static StreamUploadClient StreamUploadClient;
         public static Project Project;
         public static TextBlock TxtLog;
         public static string RootPath;
         public static bool ProjectDestinationSkip;
-        
+
+        public const BindingType ClientBindingType = BindingType.TcpBinding;
+        public const string ClientVersion = "201501";
+
         #endregion
 
         #region Tridion CoreService
@@ -168,18 +172,18 @@ namespace SDL.TridionVSRazorExtension
             return binding;
         }
 
-        public static SessionAwareCoreServiceClient GetTcpClient(string host, string username, string password)
+        public static LocalSessionAwareCoreServiceClient GetTcpClient(string host, string username, string password)
         {
             if (String.IsNullOrEmpty(host))
                 host = "localhost";
 
-            host = host.GetDomainNameAndPort();
+            host = host.GetDomainName();
 
             var binding = GetBinding();
 
-            var endpoint = new EndpointAddress(String.Format("net.tcp://{0}:2660/CoreService/201501/netTcp", host));
+            var endpoint = new EndpointAddress(String.Format("net.tcp://{0}:2660/CoreService/{1}/netTcp", host, ClientVersion));
 
-            var client = new SessionAwareCoreServiceClient(binding, endpoint);
+            var client = new LocalSessionAwareCoreServiceClient(binding, endpoint);
 
             if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
             {
@@ -189,13 +193,13 @@ namespace SDL.TridionVSRazorExtension
             return client;
         }
 
-        public static SessionAwareCoreServiceClient GetTcpClient(MappingInfo mapping)
+        public static LocalSessionAwareCoreServiceClient GetTcpClient(MappingInfo mapping)
         {
             EnsureCredentialsNotEmpty(mapping);
             return GetTcpClient(mapping.Host, mapping.Username, mapping.Password);
         }
 
-        public static CoreServiceClient GetHttpClient(string host, string username, string password)
+        public static LocalCoreServiceClient GetHttpClient(string host, string username, string password)
         {
             if (String.IsNullOrEmpty(host))
                 host = "localhost";
@@ -204,9 +208,9 @@ namespace SDL.TridionVSRazorExtension
 
             var binding = GetHttpBinding3();
 
-            var endpoint = new EndpointAddress(String.Format("http://{0}/webservices/CoreService201501.svc/basicHttp", host));
+            var endpoint = new EndpointAddress(String.Format("http://{0}/webservices/CoreService{1}.svc/basicHttp", host, ClientVersion));
 
-            var client = new CoreServiceClient(binding, endpoint);
+            var client = new LocalCoreServiceClient(binding, endpoint);
 
             if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
             {
@@ -217,7 +221,7 @@ namespace SDL.TridionVSRazorExtension
             return client;
         }
 
-        public static CoreServiceClient GetHttpClient(MappingInfo mapping)
+        public static LocalCoreServiceClient GetHttpClient(MappingInfo mapping)
         {
             EnsureCredentialsNotEmpty(mapping);
             return GetHttpClient(mapping.Host, mapping.Username, mapping.Password);
@@ -225,9 +229,12 @@ namespace SDL.TridionVSRazorExtension
 
         public static bool EnsureValidClient(MappingInfo mapping)
         {
-            if (Client == null)
+            if (Client == null || Client is SessionAwareCoreServiceClient && ((SessionAwareCoreServiceClient)Client).InnerChannel.State == CommunicationState.Faulted)
             {
-                Client = GetHttpClient(mapping.Host, mapping.Username, mapping.Password);
+                if (ClientBindingType == BindingType.HttpBinding)
+                    Client = GetHttpClient(mapping.Host, mapping.Username, mapping.Password);
+                else
+                    Client = GetTcpClient(mapping.Host, mapping.Username, mapping.Password);
 
                 try
                 {
@@ -1069,6 +1076,14 @@ namespace SDL.TridionVSRazorExtension
                 return null;
 
             return Client.GetListXml(tcmFolder, new OrganizationalItemItemsFilterData { ItemTypes = new[] { ItemType.TemplateBuildingBlock } }).ToList(ItemType.TemplateBuildingBlock);
+        }
+
+        public static List<ItemInfo> GetLayoutsByParentFolder(MappingInfo mapping, string tcmFolder)
+        {
+            if (!EnsureValidClient(mapping))
+                return null;
+
+            return Client.GetListXml(tcmFolder, new OrganizationalItemItemsFilterData { Recursive = true, ItemTypes = new[] { ItemType.TemplateBuildingBlock }, TemplateTypeIds = new[] { 8 } }).ToList(ItemType.TemplateBuildingBlock);
         }
 
         public static List<ItemInfo> GetStructureGroupsByParentStructureGroup(MappingInfo mapping, string tcmSG)
@@ -3415,6 +3430,26 @@ namespace SDL.TridionVSRazorExtension
             var list2 = list.Cast<BluePrintNodeData>().Where(x => x.Item != null).ToList();
 
             return list2.Last().Item.Id;
+        }
+
+        public static List<string> GetBluePrint(MappingInfo mapping, string id)
+        {
+            if (!EnsureValidClient(mapping))
+                return null;
+
+            return GetBluePrint(id);
+        }
+
+        private static List<string> GetBluePrint(string id)
+        {
+            if (id.StartsWith("tcm:0-"))
+                return null;
+
+            var list = Client.GetSystemWideList(new BluePrintFilterData { ForItem = new LinkToRepositoryLocalObjectData { IdRef = id } });
+            if (list == null || list.Length == 0)
+                return null;
+
+            return list.Cast<BluePrintNodeData>().Where(x => x.Item != null).Select(x => x.Item.Id).ToList();
         }
 
         public static string GetBluePrintTopLocalizedTcmId(MappingInfo mapping, string id)

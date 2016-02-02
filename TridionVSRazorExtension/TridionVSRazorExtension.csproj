@@ -55,6 +55,9 @@
     <Compile Include="BinaryDiffDialogWindow.xaml.cs">
       <DependentUpon>BinaryDiffDialogWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Client\ILocalClient.cs" />
+    <Compile Include="Client\LocalCoreServiceClient.cs" />
+    <Compile Include="Client\LocalSessionAwareCoreServiceClient.cs" />
     <Compile Include="Command\FolderContextCommand.cs" />
     <Compile Include="Command\ItemContextCommand.cs" />
     <Compile Include="Command\ItemContextDebugCommand.cs" />
