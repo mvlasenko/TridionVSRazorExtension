@@ -36,8 +36,9 @@ namespace SDL.TridionVSRazorExtension
         public static TextBlock TxtLog;
         public static string RootPath;
         public static bool ProjectDestination_Skip;
-        public static BindingType ClientBindingType = BindingType.HttpBinding;
-        public static string ClientVersion = "2013";
+
+        public const BindingType ClientBindingType = BindingType.TcpBinding;
+        public const string ClientVersion = "201501";
 
         #endregion
 
@@ -176,7 +177,7 @@ namespace SDL.TridionVSRazorExtension
             if (String.IsNullOrEmpty(host))
                 host = "localhost";
 
-            host = host.GetDomainNameAndPort();
+            host = host.GetDomainName();
 
             var binding = GetBinding();
 
@@ -1072,6 +1073,14 @@ namespace SDL.TridionVSRazorExtension
                 return null;
 
             return Client.GetListXml(tcmFolder, new OrganizationalItemItemsFilterData { ItemTypes = new[] { ItemType.TemplateBuildingBlock } }).ToList(ItemType.TemplateBuildingBlock);
+        }
+
+        public static List<ItemInfo> GetLayoutsByParentFolder(MappingInfo mapping, string tcmFolder)
+        {
+            if (!EnsureValidClient(mapping))
+                return null;
+
+            return Client.GetListXml(tcmFolder, new OrganizationalItemItemsFilterData { Recursive = true, ItemTypes = new[] { ItemType.TemplateBuildingBlock }, TemplateTypeIds = new[] { 8 } }).ToList(ItemType.TemplateBuildingBlock);
         }
 
         public static List<ItemInfo> GetStructureGroupsByParentStructureGroup(MappingInfo mapping, string tcmSG)
@@ -3418,6 +3427,26 @@ namespace SDL.TridionVSRazorExtension
             var list2 = list.Cast<BluePrintNodeData>().Where(x => x.Item != null).ToList();
 
             return list2.Last().Item.Id;
+        }
+
+        public static List<string> GetBluePrint(MappingInfo mapping, string id)
+        {
+            if (!EnsureValidClient(mapping))
+                return null;
+
+            return GetBluePrint(id);
+        }
+
+        private static List<string> GetBluePrint(string id)
+        {
+            if (id.StartsWith("tcm:0-"))
+                return null;
+
+            var list = Client.GetSystemWideList(new BluePrintFilterData { ForItem = new LinkToRepositoryLocalObjectData { IdRef = id } });
+            if (list == null || list.Length == 0)
+                return null;
+
+            return list.Cast<BluePrintNodeData>().Where(x => x.Item != null).Select(x => x.Item.Id).ToList();
         }
 
         public static string GetBluePrintTopLocalizedTcmId(MappingInfo mapping, string id)

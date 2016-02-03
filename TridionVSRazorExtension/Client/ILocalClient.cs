@@ -138,7 +138,6 @@ namespace SDL.TridionVSRazorExtension.Client
         string EndGetApiVersion(IAsyncResult result);
         string[] EndGetApplicationIds(IAsyncResult result);
         SecurityDescriptorDataDictionary EndGetContentSecurityDescriptorsForOrgItemIds(IAsyncResult result);
-        UserData EndGetCurrentUser(IAsyncResult result);
         IdentifiableObjectData EndGetDefaultData(IAsyncResult result);
         TridionEnumValue[] EndGetEnumValues(IAsyncResult result);
         InstanceData EndGetInstanceData(IAsyncResult result);
@@ -220,7 +219,6 @@ namespace SDL.TridionVSRazorExtension.Client
         string GetApiVersion();
         string[] GetApplicationIds();
         SecurityDescriptorDataDictionary GetContentSecurityDescriptorsForOrgItemIds(string[] organizationalItemIds);
-        UserData GetCurrentUser();
         IdentifiableObjectData GetDefaultData(ItemType itemType, string containerId, ReadOptions readOptions);
         TridionEnumValue[] GetEnumValues(string type);
         InstanceData GetInstanceData(string schemaId, string containerItemId, ReadOptions readOptions);

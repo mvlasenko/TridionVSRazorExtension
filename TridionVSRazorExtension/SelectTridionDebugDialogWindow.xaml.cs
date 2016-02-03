@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -58,18 +59,41 @@ namespace SDL.TridionVSRazorExtension
 
             //set test components tree
 
-            if (string.IsNullOrEmpty(this.TestItemTcmId))
-                this.TestItemTcmId = Common.IsolatedStorage.Service.GetFromIsolatedStorage(Common.IsolatedStorage.Service.GetId("DebugItem", this.TbbTcmId, this.TestTemplateTcmId));
-
             string strTcmIdPath = Common.IsolatedStorage.Service.GetFromIsolatedStorage(Common.IsolatedStorage.Service.GetId("DebugItemPath", this.TbbTcmId, this.TestTemplateTcmId));
             List<string> tcmIdPath = string.IsNullOrEmpty(strTcmIdPath) ? null : strTcmIdPath.Split('|').ToList();
-            if (tcmIdPath == null)
+
+            if (tcmIdPath == null && !string.IsNullOrEmpty(this.TestItemTcmId))
+            {
                 tcmIdPath = MainService.GetIdPath(this.CurrentMapping, this.TestItemTcmId);
+            }
+
+            if (tcmIdPath != null && string.IsNullOrEmpty(this.TestItemTcmId))
+            {
+                this.TestItemTcmId = tcmIdPath.First();
+            }
+
+            //smart folder detect
+            if (string.IsNullOrEmpty(this.TestItemTcmId))
+            {
+                ComponentTemplateData templateData = MainService.ReadItem(this.CurrentMapping, this.TestTemplateTcmId) as ComponentTemplateData;
+
+                if (templateData != null && templateData.RelatedSchemas.Any())
+                {
+                    var item = MainService.GetComponents(this.CurrentMapping, templateData.RelatedSchemas[0].IdRef).FirstOrDefault();
+
+                    if (item != null)
+                    {
+                        this.TestItemTcmId = item.TcmId;
+                        tcmIdPath = MainService.GetIdPath(this.CurrentMapping, this.TestItemTcmId);
+                    }
+                }
+            }
 
             ItemType templateType = MainService.GetItemType(this.TestTemplateTcmId);
             TridionSelectorMode treeMode = templateType == ItemType.PageTemplate ? TridionSelectorMode.StructureGroup | TridionSelectorMode.Page : TridionSelectorMode.Folder | TridionSelectorMode.Component;
 
             this.treeTridionItem.ItemsSource = MainService.GetPublications(this.CurrentMapping).Expand(this.CurrentMapping, treeMode, tcmIdPath, this.TestItemTcmId).MakeExpandable();
+
             this.treeTridionItem.IsEnabled = true;
         }
 
@@ -140,7 +164,6 @@ namespace SDL.TridionVSRazorExtension
             }
 
             this.TestItemTcmId = item.TcmId;
-            Common.IsolatedStorage.Service.SaveToIsolatedStorage(Common.IsolatedStorage.Service.GetId("DebugItem", this.TbbTcmId, this.TestTemplateTcmId), this.TestItemTcmId);
 
             List<ItemInfo> list = new List<ItemInfo>();
             MainService.AddPathItem(list, item);
