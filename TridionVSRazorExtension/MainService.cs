@@ -29,7 +29,7 @@ namespace SDL.TridionVSRazorExtension
     {
         #region Fields
 
-        public static ILocalClient Client;
+        public static ICoreService Client;
         public static StreamDownloadClient StreamDownloadClient;
         public static StreamUploadClient StreamUploadClient;
         public static Project Project;

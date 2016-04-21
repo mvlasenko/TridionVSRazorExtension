@@ -4,7 +4,7 @@ using Tridion.ContentManager.CoreService.Client;
 
 namespace SDL.TridionVSRazorExtension.Client
 {
-    public class LocalSessionAwareCoreServiceClient : SessionAwareCoreServiceClient, ILocalClient
+    public class LocalSessionAwareCoreServiceClient : SessionAwareCoreServiceClient, ICoreService
     {
         public LocalSessionAwareCoreServiceClient() : base()
         {

@@ -4,7 +4,7 @@ using Tridion.ContentManager.CoreService.Client;
 
 namespace SDL.TridionVSRazorExtension.Client
 {
-    public class LocalCoreServiceClient : CoreServiceClient, ILocalClient
+    public class LocalCoreServiceClient : CoreServiceClient, ICoreService
     {
         public LocalCoreServiceClient() : base()
         {
