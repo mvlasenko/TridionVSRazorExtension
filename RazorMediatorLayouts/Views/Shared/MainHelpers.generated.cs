@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace $safeprojectname$
+namespace TestRazorMediatorLayouts
 {
     using System;
     using System.Collections.Generic;
@@ -27,330 +27,46 @@ namespace $safeprojectname$
     using System.Web.UI;
     using System.Web.WebPages;
     
-    #line 3 "..\..\Views\Shared\MainHelpers.cshtml"
-    using Tridion.ContentManager.Templating.Expression;
-    
-    #line default
-    #line hidden
-    
     
     
     public partial class WrappedTridionRazorTemplate
     {
 
-#line 5 "..\..\Views\Shared\MainHelpers.cshtml"
-public System.Web.WebPages.HelperResult GetFieldValue(string fieldExpression = null, int index = 0)
+#line 4 "..\..\Views\Shared\MainHelpers.cshtml"
+public System.Web.WebPages.HelperResult TestHelper(string test)
 {
 #line default
 #line hidden
 return new System.Web.WebPages.HelperResult(__razor_helper_writer => {
+
+#line 5 "..\..\Views\Shared\MainHelpers.cshtml"
+ 
+
+
+#line default
+#line hidden
+WriteLiteralTo(__razor_helper_writer, "    ");
+
+WriteLiteralTo(__razor_helper_writer, "<h1>");
+
 
 #line 6 "..\..\Views\Shared\MainHelpers.cshtml"
- 
-    var fn = new BuiltInFunctions(TridionHelper.Engine, TridionHelper.Package);
-    try
-    {
-        
-
-#line default
-#line hidden
-
-#line 10 "..\..\Views\Shared\MainHelpers.cshtml"
-WriteTo(__razor_helper_writer, fn.GetFieldValue(fieldExpression, index));
+WriteTo(__razor_helper_writer, test);
 
 
 #line default
 #line hidden
+WriteLiteralTo(__razor_helper_writer, "</h1>\r\n");
 
-#line 10 "..\..\Views\Shared\MainHelpers.cshtml"
-                                                 
-    }
-    catch
-    {
-        Log.Debug("Unable to resolve: " + fieldExpression + " with index: " + index);
-    }
+
+#line 7 "..\..\Views\Shared\MainHelpers.cshtml"
 
 
 #line default
 #line hidden
 });
 
-#line 16 "..\..\Views\Shared\MainHelpers.cshtml"
-}
-#line default
-#line hidden
-
-#line 18 "..\..\Views\Shared\MainHelpers.cshtml"
-public System.Web.WebPages.HelperResult FieldStartMarker(string fieldExpression)
-{
-#line default
-#line hidden
-return new System.Web.WebPages.HelperResult(__razor_helper_writer => {
-
-#line 19 "..\..\Views\Shared\MainHelpers.cshtml"
- 
-    var fn = new BuiltInFunctions(TridionHelper.Engine, TridionHelper.Package);
-    
-
-#line default
-#line hidden
-
-#line 21 "..\..\Views\Shared\MainHelpers.cshtml"
-WriteTo(__razor_helper_writer, fn.FieldStartMarker(fieldExpression));
-
-
-#line default
-#line hidden
-
-#line 21 "..\..\Views\Shared\MainHelpers.cshtml"
-                                         
-
-
-#line default
-#line hidden
-});
-
-#line 22 "..\..\Views\Shared\MainHelpers.cshtml"
-}
-#line default
-#line hidden
-
-#line 24 "..\..\Views\Shared\MainHelpers.cshtml"
-public System.Web.WebPages.HelperResult FieldStartMarkerDiv(string fieldExpression)
-{
-#line default
-#line hidden
-return new System.Web.WebPages.HelperResult(__razor_helper_writer => {
-
-#line 25 "..\..\Views\Shared\MainHelpers.cshtml"
- 
-    var fn = new BuiltInFunctions(TridionHelper.Engine, TridionHelper.Package);
-    string tagString = fn.FieldStartMarker(fieldExpression);
-    tagString = tagString.TrimEnd('>');
-    tagString += " tag=\"div\">";
-
-    
-
-#line default
-#line hidden
-
-#line 31 "..\..\Views\Shared\MainHelpers.cshtml"
-WriteTo(__razor_helper_writer, tagString);
-
-
-#line default
-#line hidden
-
-#line 31 "..\..\Views\Shared\MainHelpers.cshtml"
-              
-
-
-#line default
-#line hidden
-});
-
-#line 32 "..\..\Views\Shared\MainHelpers.cshtml"
-}
-#line default
-#line hidden
-
-#line 34 "..\..\Views\Shared\MainHelpers.cshtml"
-public System.Web.WebPages.HelperResult FieldEndMarker()
-{
-#line default
-#line hidden
-return new System.Web.WebPages.HelperResult(__razor_helper_writer => {
-
-#line 35 "..\..\Views\Shared\MainHelpers.cshtml"
- 
-
-
-#line default
-#line hidden
-WriteLiteralTo(__razor_helper_writer, "    ");
-
-WriteLiteralTo(__razor_helper_writer, "</tcdl:Field>\r\n");
-
-
-#line 37 "..\..\Views\Shared\MainHelpers.cshtml"
-
-
-#line default
-#line hidden
-});
-
-#line 37 "..\..\Views\Shared\MainHelpers.cshtml"
-}
-#line default
-#line hidden
-
-#line 39 "..\..\Views\Shared\MainHelpers.cshtml"
-public System.Web.WebPages.HelperResult FieldValueStartMarker(int index = 0)
-{
-#line default
-#line hidden
-return new System.Web.WebPages.HelperResult(__razor_helper_writer => {
-
-#line 40 "..\..\Views\Shared\MainHelpers.cshtml"
- 
-
-
-#line default
-#line hidden
-WriteLiteralTo(__razor_helper_writer, "    ");
-
-WriteLiteralTo(__razor_helper_writer, "<tcdl:fieldvalue index=\"");
-
-
-#line 41 "..\..\Views\Shared\MainHelpers.cshtml"
-WriteTo(__razor_helper_writer, index);
-
-
-#line default
-#line hidden
-WriteLiteralTo(__razor_helper_writer, "\">\r\n");
-
-
-#line 42 "..\..\Views\Shared\MainHelpers.cshtml"
-
-
-#line default
-#line hidden
-});
-
-#line 42 "..\..\Views\Shared\MainHelpers.cshtml"
-}
-#line default
-#line hidden
-
-#line 44 "..\..\Views\Shared\MainHelpers.cshtml"
-public System.Web.WebPages.HelperResult FieldValueEndMarker()
-{
-#line default
-#line hidden
-return new System.Web.WebPages.HelperResult(__razor_helper_writer => {
-
-#line 45 "..\..\Views\Shared\MainHelpers.cshtml"
- 
-
-
-#line default
-#line hidden
-WriteLiteralTo(__razor_helper_writer, "    ");
-
-WriteLiteralTo(__razor_helper_writer, "</tcdl:fieldvalue>\r\n");
-
-
-#line 47 "..\..\Views\Shared\MainHelpers.cshtml"
-
-
-#line default
-#line hidden
-});
-
-#line 47 "..\..\Views\Shared\MainHelpers.cshtml"
-}
-#line default
-#line hidden
-
-#line 49 "..\..\Views\Shared\MainHelpers.cshtml"
-public System.Web.WebPages.HelperResult StartField(string fieldExpression = null, int index = 0)
-{
-#line default
-#line hidden
-return new System.Web.WebPages.HelperResult(__razor_helper_writer => {
-
-#line 50 "..\..\Views\Shared\MainHelpers.cshtml"
- 
-    if (fieldExpression != null)
-    {
-        
-
-#line default
-#line hidden
-
-#line 53 "..\..\Views\Shared\MainHelpers.cshtml"
-WriteTo(__razor_helper_writer, FieldStartMarker(fieldExpression));
-
-
-#line default
-#line hidden
-
-#line 53 "..\..\Views\Shared\MainHelpers.cshtml"
-                                          
-    }
-    if (fieldExpression != null)
-    {
-        
-
-#line default
-#line hidden
-
-#line 57 "..\..\Views\Shared\MainHelpers.cshtml"
-WriteTo(__razor_helper_writer, FieldValueStartMarker(index));
-
-
-#line default
-#line hidden
-
-#line 57 "..\..\Views\Shared\MainHelpers.cshtml"
-                                     
-    }
-
-
-#line default
-#line hidden
-});
-
-#line 59 "..\..\Views\Shared\MainHelpers.cshtml"
-}
-#line default
-#line hidden
-
-#line 61 "..\..\Views\Shared\MainHelpers.cshtml"
-public System.Web.WebPages.HelperResult EndField()
-{
-#line default
-#line hidden
-return new System.Web.WebPages.HelperResult(__razor_helper_writer => {
-
-#line 62 "..\..\Views\Shared\MainHelpers.cshtml"
- 
-    
-
-#line default
-#line hidden
-
-#line 63 "..\..\Views\Shared\MainHelpers.cshtml"
-WriteTo(__razor_helper_writer, FieldValueEndMarker());
-
-
-#line default
-#line hidden
-
-#line 63 "..\..\Views\Shared\MainHelpers.cshtml"
-                          
-    
-
-#line default
-#line hidden
-
-#line 64 "..\..\Views\Shared\MainHelpers.cshtml"
-WriteTo(__razor_helper_writer, FieldEndMarker());
-
-
-#line default
-#line hidden
-
-#line 64 "..\..\Views\Shared\MainHelpers.cshtml"
-                     
-
-
-#line default
-#line hidden
-});
-
-#line 65 "..\..\Views\Shared\MainHelpers.cshtml"
+#line 7 "..\..\Views\Shared\MainHelpers.cshtml"
 }
 #line default
 #line hidden

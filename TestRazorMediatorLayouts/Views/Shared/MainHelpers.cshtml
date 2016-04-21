@@ -1,65 +1,7 @@
 @* Generator : MvcView RazorVersion : 55 *@
 @inherits TestRazorMediatorLayouts.WrappedTridionRazorTemplate
-@using Tridion.ContentManager.Templating.Expression
 
-@helper GetFieldValue(string fieldExpression = null, int index = 0)
+@helper TestHelper(string test)
 {
-    var fn = new BuiltInFunctions(TridionHelper.Engine, TridionHelper.Package);
-    try
-    {
-        @fn.GetFieldValue(fieldExpression, index)
-    }
-    catch
-    {
-        Log.Debug("Unable to resolve: " + fieldExpression + " with index: " + index);
-    }
-}
-
-@helper FieldStartMarker(string fieldExpression)
-{
-    var fn = new BuiltInFunctions(TridionHelper.Engine, TridionHelper.Package);
-    @fn.FieldStartMarker(fieldExpression)
-}
-
-@helper FieldStartMarkerDiv(string fieldExpression)
-{
-    var fn = new BuiltInFunctions(TridionHelper.Engine, TridionHelper.Package);
-    string tagString = fn.FieldStartMarker(fieldExpression);
-    tagString = tagString.TrimEnd('>');
-    tagString += " tag=\"div\">";
-
-    @tagString
-}
-
-@helper FieldEndMarker()
-{
-    @:</tcdl:Field>
-}
-
-@helper FieldValueStartMarker(int index = 0)
-{
-    @:<tcdl:fieldvalue index="@index">
-}
-
-@helper FieldValueEndMarker()
-{
-    @:</tcdl:fieldvalue>
-}
-
-@helper StartField(string fieldExpression = null, int index = 0)
-{
-    if (fieldExpression != null)
-    {
-        @FieldStartMarker(fieldExpression)
-    }
-    if (fieldExpression != null)
-    {
-        @FieldValueStartMarker(index)
-    }
-}
-
-@helper EndField()
-{
-    @FieldValueEndMarker()
-    @FieldEndMarker()
+    @:<h1>@test</h1>
 }
