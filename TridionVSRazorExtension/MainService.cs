@@ -38,7 +38,7 @@ namespace SDL.TridionVSRazorExtension
         public static bool ProjectDestination_Skip;
 
         public const BindingType ClientBindingType = BindingType.TcpBinding;
-        public const string ClientVersion = "201501";
+        public const string ClientVersion = "2011";
 
         #endregion
 
