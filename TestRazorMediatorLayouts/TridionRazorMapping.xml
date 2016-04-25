@@ -1,69 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfMappingInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <MappingInfo Name="Default" Host="localhost" TimeZoneId="FLE Standard Time">
+  <MappingInfo Name="Default" Host="localhost" TimeZoneId="E. Europe Standard Time">
     <TridionFolders>
       <TridionFolderInfo>
-        <TcmId>tcm:5058-13433-2</TcmId>
+        <TcmId>tcm:9-57-2</TcmId>
         <TcmIdPath>
-          <string>tcm:5058-13433-2</string>
-          <string>tcm:5058-11363-2</string>
-          <string>tcm:5058-11351-2</string>
-          <string>tcm:5058-11346-2</string>
-          <string>tcm:5058-11337-2</string>
-          <string>tcm:5058-4045-2</string>
-          <string>tcm:0-5058-1</string>
+          <string>tcm:9-57-2</string>
+          <string>tcm:9-56-2</string>
+          <string>tcm:9-10-2</string>
+          <string>tcm:9-5-2</string>
+          <string>tcm:9-1-2</string>
+          <string>tcm:0-9-1</string>
         </TcmIdPath>
-        <NamedPath>040 UTA Design/Building Blocks/System/Templates/Template Building Blocks/Razor Mediator/Page TBB</NamedPath>
+        <NamedPath>029 Global Sales Design/Building Blocks/System/Template Building Block/Razor Mediator/Page Design</NamedPath>
         <TridionRole>PageLayoutContainer</TridionRole>
         <ScanForItems>true</ScanForItems>
       </TridionFolderInfo>
       <TridionFolderInfo>
-        <TcmId>tcm:5058-13434-2</TcmId>
+        <TcmId>tcm:9-63-2</TcmId>
         <TcmIdPath>
-          <string>tcm:5058-13434-2</string>
-          <string>tcm:5058-11363-2</string>
-          <string>tcm:5058-11351-2</string>
-          <string>tcm:5058-11346-2</string>
-          <string>tcm:5058-11337-2</string>
-          <string>tcm:5058-4045-2</string>
-          <string>tcm:0-5058-1</string>
+          <string>tcm:9-63-2</string>
+          <string>tcm:9-56-2</string>
+          <string>tcm:9-10-2</string>
+          <string>tcm:9-5-2</string>
+          <string>tcm:9-1-2</string>
+          <string>tcm:0-9-1</string>
         </TcmIdPath>
-        <NamedPath>040 UTA Design/Building Blocks/System/Templates/Template Building Blocks/Razor Mediator/Component TBB</NamedPath>
+        <NamedPath>029 Global Sales Design/Building Blocks/System/Template Building Block/Razor Mediator/Component Design</NamedPath>
         <TridionRole>ComponentLayoutContainer</TridionRole>
         <ScanForItems>true</ScanForItems>
       </TridionFolderInfo>
       <TridionFolderInfo>
-        <TcmId>tcm:5058-11357-2</TcmId>
+        <TcmId>tcm:9-55-2</TcmId>
         <TcmIdPath>
-          <string>tcm:5058-11357-2</string>
-          <string>tcm:5058-11346-2</string>
-          <string>tcm:5058-11337-2</string>
-          <string>tcm:5058-4045-2</string>
-          <string>tcm:0-5058-1</string>
+          <string>tcm:9-55-2</string>
+          <string>tcm:9-7-2</string>
+          <string>tcm:9-5-2</string>
+          <string>tcm:9-1-2</string>
+          <string>tcm:0-9-1</string>
         </TcmIdPath>
-        <NamedPath>040 UTA Design/Building Blocks/System/Templates/Page Templates</NamedPath>
+        <NamedPath>029 Global Sales Design/Building Blocks/System/Page Template/Razor Mediator</NamedPath>
         <TridionRole>PageTemplateContainer</TridionRole>
         <ScanForItems>false</ScanForItems>
       </TridionFolderInfo>
       <TridionFolderInfo>
-        <TcmId>tcm:5058-11358-2</TcmId>
+        <TcmId>tcm:9-6-2</TcmId>
         <TcmIdPath>
-          <string>tcm:5058-11358-2</string>
-          <string>tcm:5058-11346-2</string>
-          <string>tcm:5058-11337-2</string>
-          <string>tcm:5058-4045-2</string>
-          <string>tcm:0-5058-1</string>
+          <string>tcm:9-6-2</string>
+          <string>tcm:9-5-2</string>
+          <string>tcm:9-1-2</string>
+          <string>tcm:0-9-1</string>
         </TcmIdPath>
-        <NamedPath>040 UTA Design/Building Blocks/System/Templates/Component Templates</NamedPath>
+        <NamedPath>029 Global Sales Design/Building Blocks/System/Component Template</NamedPath>
         <TridionRole>ComponentTemplateContainer</TridionRole>
         <ScanForItems>false</ScanForItems>
       </TridionFolderInfo>
     </TridionFolders>
     <ProjectFolders>
-      <ProjectFolderInfo Path="Views\PageLayouts" Checked="True" SyncTemplate="True" TcmId="tcm:5058-13433-2" TemplateFormat="&lt;CompoundTemplate xmlns=&quot;http://www.tridion.com/ContentManager/5.3/CompoundTemplate&quot;&gt;&lt;TemplateInvocation&gt;&lt;Template xlink:href=&quot;{0}&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; xlink:title=&quot;{1}&quot; /&gt;&lt;TemplateParameters&gt;&lt;/TemplateParameters&gt;&lt;/TemplateInvocation&gt;&lt;/CompoundTemplate&gt;" ProjectFolderRole="PageLayout" />
-      <ProjectFolderInfo Path="Views\ComponentLayouts" Checked="True" TcmId="tcm:5058-13434-2" TemplateFormat="&lt;CompoundTemplate xmlns=&quot;http://www.tridion.com/ContentManager/5.3/CompoundTemplate&quot;&gt;&lt;TemplateInvocation&gt;&lt;Template xlink:href=&quot;{0}&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; xlink:title=&quot;{1}&quot; /&gt;&lt;TemplateParameters&gt;&lt;/TemplateParameters&gt;&lt;/TemplateInvocation&gt;&lt;/CompoundTemplate&gt;" ProjectFolderRole="ComponentLayout">
+      <ProjectFolderInfo Path="Views\PageLayouts" Checked="True" SyncTemplate="True" TemplateFormat="&lt;CompoundTemplate xmlns=&quot;http://www.tridion.com/ContentManager/5.3/CompoundTemplate&quot;&gt;&lt;TemplateInvocation&gt;&lt;Template xlink:href=&quot;{0}&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; xlink:title=&quot;{1}&quot; /&gt;&lt;TemplateParameters&gt;&lt;/TemplateParameters&gt;&lt;/TemplateInvocation&gt;&lt;/CompoundTemplate&gt;" ProjectFolderRole="PageLayout" />
+      <ProjectFolderInfo Path="Views\ComponentLayouts" Checked="True" SyncTemplate="False" TcmId="tcm:9-63-2" TemplateFormat="&lt;CompoundTemplate xmlns=&quot;http://www.tridion.com/ContentManager/5.3/CompoundTemplate&quot;&gt;&lt;TemplateInvocation&gt;&lt;Template xlink:href=&quot;{0}&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; xlink:title=&quot;{1}&quot; /&gt;&lt;TemplateParameters&gt;&lt;/TemplateParameters&gt;&lt;/TemplateInvocation&gt;&lt;/CompoundTemplate&gt;" ProjectFolderRole="ComponentLayout">
         <ChildItems>
-          <ProjectItemInfo xsi:type="ProjectFileInfo" Path="Views\ComponentLayouts\Annual Event Detail TBB.cshtml" Checked="True" TcmId="tcm:5058-30702-2048" Title="Annual Event Detail TBB" TemplateTitle="Annual Event Detail CT" TestItemTcmId="tcm:4042-29578" TestTemplateTcmId="tcm:5057-30730-32" />
+          <ProjectItemInfo xsi:type="ProjectFileInfo" Path="Views\ComponentLayouts\Annual Event Detail Design.cshtml" Checked="True" SyncTemplate="False" TcmId="tcm:9-10453-2048" Title="Annual Event Detail Design" TemplateTitle="Annual Event Detail" TestItemTcmId="tcm:4-10312" TestTemplateTcmId="tcm:9-10454-32" />
         </ChildItems>
       </ProjectFolderInfo>
     </ProjectFolders>

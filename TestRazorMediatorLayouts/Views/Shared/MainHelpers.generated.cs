@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace $safeprojectname$
+namespace TestRazorMediatorLayouts
 {
     using System;
     using System.Collections.Generic;

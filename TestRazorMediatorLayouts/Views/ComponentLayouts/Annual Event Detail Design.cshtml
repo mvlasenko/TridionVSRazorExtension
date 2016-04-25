@@ -1,0 +1,9 @@
+@inherits TestRazorMediatorLayouts.WrappedTridionRazorTemplate
+<article>
+<h2>@Fields.DetailBody.Subheading</h2>
+<br/>
+@foreach (var p in Fields.DetailBody.Text)
+{
+    @p
+}
+</article>

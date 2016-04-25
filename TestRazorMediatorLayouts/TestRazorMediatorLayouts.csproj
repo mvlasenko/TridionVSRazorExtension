@@ -130,7 +130,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Views\ComponentLayouts\Annual Event Detail TBB.cshtml" />
     <Content Include="Views\Shared\MappingError.cshtml" />
     <Content Include="Views\Shared\Home.cshtml" />
     <Content Include="Views\Shared\MainHelpers.cshtml">
@@ -160,6 +159,9 @@
       <Project>{e4381e87-10cd-464a-95a3-acb7461534f8}</Project>
       <Name>TridionVSRazorExtension.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ComponentLayouts\Annual Event Detail Design.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
