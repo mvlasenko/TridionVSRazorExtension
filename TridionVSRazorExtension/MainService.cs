@@ -38,7 +38,7 @@ namespace SDL.TridionVSRazorExtension
         public static bool ProjectDestination_Skip;
 
         public const BindingType ClientBindingType = BindingType.TcpBinding;
-        public const string ClientVersion = "201501";
+        public const string ClientVersion = "2013";
 
         #endregion
 
@@ -398,7 +398,7 @@ namespace SDL.TridionVSRazorExtension
 
                 if (tbbData.Content == code)
                 {
-                    Client.CheckIn(id, new ReadOptions());
+                    Client.CheckIn(id, true, "Saved from TridionVSRazorExtension", new ReadOptions());
                     return true;
                 }
 
@@ -444,7 +444,7 @@ namespace SDL.TridionVSRazorExtension
                 if (tbbData == null)
                     return false;
 
-                Client.CheckIn(tbbData.Id, new ReadOptions());
+                Client.CheckIn(tbbData.Id, true, "Saved from TridionVSRazorExtension", new ReadOptions());
                 return true;
             }
             catch (Exception ex)
@@ -506,7 +506,7 @@ namespace SDL.TridionVSRazorExtension
 
                     if (templateData.Content == xml)
                     {
-                        Client.CheckIn(id, new ReadOptions());
+                        Client.CheckIn(id, true, "Saved from TridionVSRazorExtension", new ReadOptions());
                         return true;
                     }
 
@@ -541,7 +541,7 @@ namespace SDL.TridionVSRazorExtension
                 if (templateData == null)
                     return false;
 
-                Client.CheckIn(templateData.Id, new ReadOptions());
+                Client.CheckIn(templateData.Id, true, "Saved from TridionVSRazorExtension", new ReadOptions());
                 return true;
             }
             catch (Exception ex)
@@ -622,7 +622,7 @@ namespace SDL.TridionVSRazorExtension
 
                     if (templateData.Content == xml)
                     {
-                        Client.CheckIn(templateData.Id, new ReadOptions());
+                        Client.CheckIn(templateData.Id, true, "Saved from TridionVSRazorExtension", new ReadOptions());
                         return true;
                     }
 
@@ -660,7 +660,7 @@ namespace SDL.TridionVSRazorExtension
                 if (templateData == null)
                     return false;
 
-                Client.CheckIn(templateData.Id, new ReadOptions());
+                Client.CheckIn(templateData.Id, true, "Saved from TridionVSRazorExtension", new ReadOptions());
                 return true;
             }
             catch (Exception ex)
@@ -921,7 +921,7 @@ namespace SDL.TridionVSRazorExtension
                 if (multimediaComponent == null)
                     return false;
 
-                Client.CheckIn(id, new ReadOptions());
+                Client.CheckIn(id, true, "Saved from TridionVSRazorExtension", new ReadOptions());
                 return true;
             }
             catch (Exception ex)
@@ -992,7 +992,7 @@ namespace SDL.TridionVSRazorExtension
                 if (multimediaComponent == null)
                     return false;
 
-                Client.CheckIn(multimediaComponent.Id, new ReadOptions());
+                Client.CheckIn(multimediaComponent.Id, true, "Saved from TridionVSRazorExtension", new ReadOptions());
                 return true;
             }
             catch (Exception ex)
@@ -3088,7 +3088,7 @@ namespace SDL.TridionVSRazorExtension
                 if (pageTemplate == null)
                     return LinkStatus.NotFound;
 
-                Client.CheckIn(pageTemplate.Id, new ReadOptions());
+                Client.CheckIn(pageTemplate.Id, true, "Saved from TridionVSRazorExtension", new ReadOptions());
                 return LinkStatus.Found;
             }
             catch (Exception ex)
@@ -3154,7 +3154,7 @@ namespace SDL.TridionVSRazorExtension
                 if (componentTemplate == null)
                     return LinkStatus.NotFound;
 
-                Client.CheckIn(componentTemplate.Id, new ReadOptions());
+                Client.CheckIn(componentTemplate.Id, true, "Saved from TridionVSRazorExtension", new ReadOptions());
                 return LinkStatus.Found;
             }
             catch (Exception ex)
